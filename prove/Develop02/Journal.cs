@@ -1,7 +1,6 @@
 public class Journal
 {
     public string _name;
-    public string _filename;
     public List<Entry> _entries = new List<Entry>();
 
     public void Display()
@@ -26,15 +25,15 @@ public class Journal
         }
     }
 
-    public void Save()
+    public void Save(string filename)
     {
         //Lets check if the entry list have elements, if not, it will show that.
-        bool fileexist = File.Exists(_filename);
+        bool fileexist = File.Exists(filename);
         if (fileexist == true)
         {
             if (_entries.Count > 0)
             {
-                using (StreamWriter outputFile = new StreamWriter(_filename))
+                using (StreamWriter outputFile = new StreamWriter(filename))
                 {
                     foreach (Entry e in _entries)
                     {

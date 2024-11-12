@@ -154,7 +154,6 @@ class Program
                 string filename = Console.ReadLine();
                 string[] extention = filename.Split(".");
                 //string fileName = "journal.txt";
-                journal._filename = filename;
 
                 if (extention[1] == "txt" || extention[1] == "csv")
                 {
@@ -162,7 +161,7 @@ class Program
                     bool fileexist = File.Exists(filename);
                     if (fileexist == true)
                     {
-                        journal.Save();
+                        journal.Save(filename);
                     }
                     else
                     {
