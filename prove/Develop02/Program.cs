@@ -134,18 +134,18 @@ class Program
                     {
                         string[] parts = line.Split(";");
 
-                        string journalname = parts[0];
-                        string entrydate = parts[1];
-                        string entryquestion = parts[2];
-                        string entryanswer = parts[3];
+                        string journalName = parts[0];
+                        string entryDate = parts[1];
+                        string entryQuestion = parts[2];
+                        string entryAnswer = parts[3];
 
                         //If journal name of the TEXT line match the journal name of the current session, it will be loaded
-                        if (journal._name == journalname)
+                        if (journal._name == journalName)
                         {
                             Entry entry = new Entry();
-                            entry._date = entrydate;
-                            entry._question = entryquestion;
-                            entry._entry = entryanswer;
+                            entry._date = entryDate;
+                            entry._question = entryQuestion;
+                            entry._entry = entryAnswer;
                             journal._entries.Add(entry);
                         }
                     }
