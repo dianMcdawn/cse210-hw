@@ -1,4 +1,6 @@
 using System;
+using System.Formats.Asn1;
+using System.IO;
 
 class Program
 {
@@ -9,36 +11,51 @@ class Program
         //Starter variables
         int option;
         Journal journal = new Journal();
-        journal._name = "My journal";
+        journal._name = "My journal"; //Default name
 
         //Using a loop iteration to mantain the program always active
         do
         {
             //Making the choise selection
-            Console.WriteLine("Please select one of the flowwing choices: ");
-            Console.WriteLine("1. Write");
-            Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
-            Console.WriteLine("5. Quit");
+            Console.WriteLine("Please select one of the folowing choices: ");
+            Console.WriteLine("1. Journal Name");
+            Console.WriteLine("2. Write");
+            Console.WriteLine("3. Display");
+            Console.WriteLine("4. Load");
+            Console.WriteLine("5. Save");
+            Console.WriteLine("6. Quit");
             Console.Write("What would you like to do? (Number) ");
             string choice = Console.ReadLine();
 
             //Some corrections if user write the option instead of the number
-            if (choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5")
+            if (choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5" && choice != "6")
             {
-                if (choice == "Write" || choice == "1. Write") { choice = "1"; }
-                else if (choice == "Display" || choice == "2. Display") { choice = "2"; }
-                else if (choice == "Load" || choice == "3. Load") { choice = "3"; }
-                else if (choice == "Save" || choice == "4. Save") { choice = "4"; }
-                else if (choice == "Quit" || choice == "5. Quit") { choice = "5"; }
-                else { choice = "5"; }//If nothing is correct the program will shutdown
+                if (choice == "Journal" || choice == "Journal Name" || choice == "1. Journal Name") { choice = "1"; }
+                else if (choice == "Write" || choice == "2. Write") { choice = "2"; }
+                else if (choice == "Display" || choice == "3. Display") { choice = "3"; }
+                else if (choice == "Load" || choice == "4. Load") { choice = "4"; }
+                else if (choice == "Save" || choice == "5. Save") { choice = "5"; }
+                else if (choice == "Quit" || choice == "6. Quit") { choice = "6"; }
+                else { choice = "6"; }//If nothing is correct the program will shutdown
             }
 
             //Transforming string choice to int
             option = int.Parse(choice);
 
+            //Selecting a proper journal name
             if (option == 1)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Please, enter your journal name: ");
+                Console.Write("");
+                string jname = Console.ReadLine();
+                journal._name = jname;
+                Console.WriteLine("");
+                Console.WriteLine("Remember this name will be used to load and save data.");
+            }
+
+            //Writing a new entry
+            else if (option == 2)
             {
                 Console.WriteLine("");
                 //Using questions and answers with lists
@@ -74,27 +91,62 @@ class Program
                     journal._entries.Add(entry);
                 }
             }
-            else if (option == 2)
+
+            //Displaying everything saved
+            else if (option == 3)
             {
                 //This display all data saved on journey class
                 Console.WriteLine("");
                 journal.Display();
             }
 
-            else if (option == 3)
-            {
-                Console.WriteLine("");
-                option = 5;
-            }
-
+            //Reading TEXT file and saving it to the classes
             else if (option == 4)
             {
                 Console.WriteLine("");
-                option = 5;
+                Console.WriteLine("What is the filename?");
+                Console.Write("");
+                string filename = Console.ReadLine();
+                string[] lines = System.IO.File.ReadAllLines(filename);
+
+                //Reading everyline
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split(";");
+
+                    string journalname = parts[0];
+                    string entrydate = parts[1];
+                    string entryquestion = parts[2];
+                    string entryanswer = parts[3];
+
+                    //If journal name of the TEXT line match the journal name of the current session, it will be loaded
+                    if (journal._name == journalname)
+                    {
+                        Entry entry = new Entry();
+                        entry._date = entrydate;
+                        entry._question = entryquestion;
+                        entry._entry = entryanswer;
+                        journal._entries.Add(entry);
+                    }
+                }
+            }
+
+            //Saving data on a TEXT file
+            else if (option == 5)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("What is the filename?");
+                Console.Write("");
+                string filename = Console.ReadLine();
+                //string fileName = "journal.txt";
+                journal._filename = filename;
+                journal.Save();
+                Console.WriteLine("");
+                Console.WriteLine("All entries have been saved.");
             }
 
 
-        } while (option != 5);
+        } while (option != 6);
 
         //If user select quit option or a activate it by choicing something is not present in the options it will shutdown
         Console.WriteLine("");
