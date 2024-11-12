@@ -69,28 +69,43 @@ class Program
                 questions.Add("How do you felt during this day?");
                 questions.Add("How would you rate this day?");
 
-                //Promt questions using list and for loop
-                for (int i = 0; i < 5; i++)
+                //Ask every question using list and for loop
+                /*for (int i = 0; i < 5; i++)
                 {
                     Console.WriteLine(questions[i]);
                     Console.Write("");
                     string answer = Console.ReadLine();
                     answers.Add(answer);
-                }
+                }*/
+
+                //Choosing randomly a prompt from all possible questions
+                Random random = new Random();
+                int index = random.Next(questions.Count);
+                string question = questions[index];
+                Console.WriteLine(question);
+                Console.Write("");
+                string answer = Console.ReadLine();
 
                 //Date
                 DateTime theCurrentTime = DateTime.Now;
                 string dateText = theCurrentTime.ToShortDateString();
 
-                //Using for loop to add entries classes to journal class
-                for (int i = 0; i < 5; i++)
+                //Using for loop to add all answers from every question
+                /*for (int i = 0; i < 5; i++)
                 {
                     Entry entry = new Entry();
                     entry._date = dateText;
                     entry._question = questions[i];
                     entry._entry = answers[i];
                     journal._entries.Add(entry);
-                }
+                }*/
+
+                //Saving the answer of the random question
+                Entry entry = new Entry();
+                entry._date = dateText;
+                entry._question = question;
+                entry._entry = answer;
+                journal._entries.Add(entry);
             }
 
             //Displaying everything saved
