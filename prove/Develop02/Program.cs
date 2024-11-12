@@ -142,9 +142,22 @@ class Program
                 string filename = Console.ReadLine();
                 //string fileName = "journal.txt";
                 journal._filename = filename;
-                journal.Save();
-                Console.WriteLine("");
-                Console.WriteLine("All entries have been saved.");
+
+                //Console.WriteLine(File.Exists(curFile) ? "File exists." : "File does not exist.");
+                bool fileexist = File.Exists(filename);
+                if (fileexist == true)
+                {
+                    journal.Save();
+                    Console.WriteLine("");
+                    Console.WriteLine("All entries have been saved.");
+                    Console.WriteLine("");
+                }
+                else
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("The File does not exist. Please try again.");
+                    Console.WriteLine("");
+                }
             }
 
 

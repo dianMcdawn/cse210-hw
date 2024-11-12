@@ -28,20 +28,29 @@ public class Journal
 
     public void Save()
     {
-        if (_entries.Count > 0)
+        bool fileexist = File.Exists(_filename);
+        if (fileexist == true)
         {
-            using (StreamWriter outputFile = new StreamWriter(_filename))
+            if (_entries.Count > 0)
             {
-                foreach (Entry e in _entries)
+                using (StreamWriter outputFile = new StreamWriter(_filename))
                 {
-                    // Savind data
-                    outputFile.WriteLine($"{_name};{e._date};{e._question};{e._entry}");
+                    foreach (Entry e in _entries)
+                    {
+                        // Savind data
+                        outputFile.WriteLine($"{_name};{e._date};{e._question};{e._entry}");
+                    }
                 }
+            }
+            else
+            {
+                Console.WriteLine("There are nothing to save.");
+                Console.WriteLine("");
             }
         }
         else
         {
-            Console.WriteLine("There are nothing to save.");
+            Console.WriteLine("The File does not exist. Please try again.");
             Console.WriteLine("");
         }
     }
