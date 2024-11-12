@@ -9,7 +9,9 @@ public class Journal
         Console.WriteLine("Entries:");
         foreach (Entry e in _entries)
         {
-            Console.WriteLine($"{e}");
+            Console.WriteLine($"Date {e._date} - Promt {e._question}");
+            Console.WriteLine($"{e._entry}");
+            Console.WriteLine("");
         }
     }
 }

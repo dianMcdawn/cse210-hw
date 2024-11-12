@@ -21,37 +21,43 @@ class Program
             Console.WriteLine("3. Load");
             Console.WriteLine("4. Save");
             Console.WriteLine("5. Quit");
-            Console.Write("What would you like to do? (Number)");
+            Console.Write("What would you like to do? (Number) ");
             string choice = Console.ReadLine();
 
-            //Some corrections if user write the entiry option instead of the number
-            if (choice == "Write" || choice == "1. Write") { choice = "1"; }
-            else if (choice == "Display" || choice == "2. Display") { choice = "2"; }
-            else if (choice == "Load" || choice == "3. Load") { choice = "3"; }
-            else if (choice == "Save" || choice == "4. Save") { choice = "4"; }
-            else if (choice == "Quit" || choice == "5. Quit") { choice = "5"; }
-            else { choice = "5"; }//If nothing is correct the program will shutdown
+            //Some corrections if user write the option instead of the number
+            if (choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5")
+            {
+                if (choice == "Write" || choice == "1. Write") { choice = "1"; }
+                else if (choice == "Display" || choice == "2. Display") { choice = "2"; }
+                else if (choice == "Load" || choice == "3. Load") { choice = "3"; }
+                else if (choice == "Save" || choice == "4. Save") { choice = "4"; }
+                else if (choice == "Quit" || choice == "5. Quit") { choice = "5"; }
+                else { choice = "5"; }//If nothing is correct the program will shutdown
+            }
+
             //Transforming string choice to int
             option = int.Parse(choice);
 
             if (option == 1)
             {
+                Console.WriteLine("");
                 //Using questions and answers with lists
                 List<string> questions = new List<string>();
                 List<string> answers = new List<string>();
 
-                questions[0] = "What was the best part of my day?";
-                questions[1] = "Could you do what you spected to do?";
-                questions[2] = "Is there something to change or improve from this day?";
-                questions[3] = "How do you felt during this day?";
-                questions[4] = "How would you rate this day?";
+                questions.Add("What was the best part of my day?");
+                questions.Add("Could you do what you spected to do?");
+                questions.Add("Is there something to change or improve from this day?");
+                questions.Add("How do you felt during this day?");
+                questions.Add("How would you rate this day?");
 
                 //Promt questions using list and for loop
                 for (int i = 0; i < 5; i++)
                 {
                     Console.WriteLine(questions[i]);
                     Console.Write("");
-                    answers[i] = Console.ReadLine();
+                    string answer = Console.ReadLine();
+                    answers.Add(answer);
                 }
 
                 //Date
@@ -70,21 +76,25 @@ class Program
             }
             else if (option == 2)
             {
+                //This display all data saved on journey class
+                Console.WriteLine("");
                 journal.Display();
             }
 
             else if (option == 3)
             {
+                Console.WriteLine("");
                 option = 5;
             }
 
             else if (option == 4)
             {
+                Console.WriteLine("");
                 option = 5;
             }
 
 
-        } while (option == 5);
+        } while (option != 5);
 
         //If user select quit option or a activate it by choicing something is not present in the options it will shutdown
         Console.WriteLine("");
