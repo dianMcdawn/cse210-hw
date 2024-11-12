@@ -6,25 +6,43 @@ public class Journal
 
     public void Display()
     {
-        Console.WriteLine($"Name: {_name}");
-        Console.WriteLine("Entries:");
-        foreach (Entry e in _entries)
+        if (_entries.Count > 0)
         {
-            Console.WriteLine($"Date {e._date} - Promt {e._question}");
-            Console.WriteLine($"{e._entry}");
+            Console.WriteLine($"Name: {_name}");
+            Console.WriteLine("Entries:");
+            foreach (Entry e in _entries)
+            {
+                Console.WriteLine($"Date {e._date} - Promt {e._question}");
+                Console.WriteLine($"{e._entry}");
+                Console.WriteLine("");
+            }
+        }
+        else
+        {
+            Console.WriteLine($"Name: {_name}");
+            Console.WriteLine("Entries:");
+            Console.WriteLine("There are no entries.");
             Console.WriteLine("");
         }
     }
 
     public void Save()
     {
-        using (StreamWriter outputFile = new StreamWriter(_filename))
+        if (_entries.Count > 0)
         {
-            foreach (Entry e in _entries)
+            using (StreamWriter outputFile = new StreamWriter(_filename))
             {
-                // Savind data
-                outputFile.WriteLine($"{_name};{e._date};{e._question};{e._entry}");
+                foreach (Entry e in _entries)
+                {
+                    // Savind data
+                    outputFile.WriteLine($"{_name};{e._date};{e._question};{e._entry}");
+                }
             }
+        }
+        else
+        {
+            Console.WriteLine("There are nothing to save.");
+            Console.WriteLine("");
         }
     }
 }

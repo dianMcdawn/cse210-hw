@@ -129,6 +129,8 @@ class Program
                         journal._entries.Add(entry);
                     }
                 }
+                Console.WriteLine("Data loaded.");
+                Console.Write("");
             }
 
             //Saving data on a TEXT file
