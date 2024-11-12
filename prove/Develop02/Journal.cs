@@ -42,15 +42,20 @@ public class Journal
                         outputFile.WriteLine($"{_name};{e._date};{e._question};{e._entry}");
                     }
                 }
+                Console.WriteLine("");
+                Console.WriteLine("All entries had been saved.");
+                Console.WriteLine("");
             }
             else
             {
+                Console.WriteLine("");
                 Console.WriteLine("There are nothing to save.");
                 Console.WriteLine("");
             }
         }
         else
         {
+            Console.WriteLine("");
             Console.WriteLine("The File does not exist. Please try again.");
             Console.WriteLine("");
         }

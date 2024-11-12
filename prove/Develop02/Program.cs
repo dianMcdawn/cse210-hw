@@ -163,9 +163,6 @@ class Program
                     if (fileexist == true)
                     {
                         journal.Save();
-                        Console.WriteLine("");
-                        Console.WriteLine("All entries have been saved.");
-                        Console.WriteLine("");
                     }
                     else
                     {
