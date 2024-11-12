@@ -1,6 +1,7 @@
 using System;
 using System.Formats.Asn1;
 using System.IO;
+using System.Text;
 
 class Program
 {
@@ -104,58 +105,79 @@ class Program
             else if (option == 4)
             {
                 Console.WriteLine("");
-                Console.WriteLine("What is the filename?");
+                Console.WriteLine("What is the TEXT or CSV filename?");
                 Console.Write("");
                 string filename = Console.ReadLine();
+                //Separate filename from file extention
+                string[] extention = filename.Split(".");
                 string[] lines = System.IO.File.ReadAllLines(filename);
 
-                //Reading everyline
-                foreach (string line in lines)
+                if (extention[1] == "txt" || extention[1] == "csv")
                 {
-                    string[] parts = line.Split(";");
-
-                    string journalname = parts[0];
-                    string entrydate = parts[1];
-                    string entryquestion = parts[2];
-                    string entryanswer = parts[3];
-
-                    //If journal name of the TEXT line match the journal name of the current session, it will be loaded
-                    if (journal._name == journalname)
+                    //Reading everyline
+                    foreach (string line in lines)
                     {
-                        Entry entry = new Entry();
-                        entry._date = entrydate;
-                        entry._question = entryquestion;
-                        entry._entry = entryanswer;
-                        journal._entries.Add(entry);
+                        string[] parts = line.Split(";");
+
+                        string journalname = parts[0];
+                        string entrydate = parts[1];
+                        string entryquestion = parts[2];
+                        string entryanswer = parts[3];
+
+                        //If journal name of the TEXT line match the journal name of the current session, it will be loaded
+                        if (journal._name == journalname)
+                        {
+                            Entry entry = new Entry();
+                            entry._date = entrydate;
+                            entry._question = entryquestion;
+                            entry._entry = entryanswer;
+                            journal._entries.Add(entry);
+                        }
                     }
+                    Console.WriteLine("Data loaded.");
+                    Console.Write("");
                 }
-                Console.WriteLine("Data loaded.");
-                Console.Write("");
+                else
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("The File extention must be TXT or CSV. Please try again.");
+                    Console.WriteLine("");
+                }
             }
 
             //Saving data on a TEXT file
             else if (option == 5)
             {
                 Console.WriteLine("");
-                Console.WriteLine("What is the filename?");
+                Console.WriteLine("What is the TEXT or CSV filename?");
                 Console.Write("");
                 string filename = Console.ReadLine();
+                string[] extention = filename.Split(".");
                 //string fileName = "journal.txt";
                 journal._filename = filename;
 
-                //Console.WriteLine(File.Exists(curFile) ? "File exists." : "File does not exist.");
-                bool fileexist = File.Exists(filename);
-                if (fileexist == true)
+                if (extention[1] == "txt" || extention[1] == "csv")
                 {
-                    journal.Save();
-                    Console.WriteLine("");
-                    Console.WriteLine("All entries have been saved.");
-                    Console.WriteLine("");
+                    //Console.WriteLine(File.Exists(curFile) ? "File exists." : "File does not exist.");
+                    bool fileexist = File.Exists(filename);
+                    if (fileexist == true)
+                    {
+                        journal.Save();
+                        Console.WriteLine("");
+                        Console.WriteLine("All entries have been saved.");
+                        Console.WriteLine("");
+                    }
+                    else
+                    {
+                        Console.WriteLine("");
+                        Console.WriteLine("The File does not exist. Please try again.");
+                        Console.WriteLine("");
+                    }
                 }
                 else
                 {
                     Console.WriteLine("");
-                    Console.WriteLine("The File does not exist. Please try again.");
+                    Console.WriteLine("The File extention must be TXT or CSV. Please try again.");
                     Console.WriteLine("");
                 }
             }

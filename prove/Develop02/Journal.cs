@@ -28,6 +28,7 @@ public class Journal
 
     public void Save()
     {
+        //Lets check if the entry list have elements, if not, it will show that.
         bool fileexist = File.Exists(_filename);
         if (fileexist == true)
         {
