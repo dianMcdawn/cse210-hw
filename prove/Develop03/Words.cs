@@ -64,6 +64,7 @@ public class Words
     private void HiddeWord(string word)
     {
         int lng = _word.Length;
+        _hidden = "";
         for (int i = 0; i < lng; i++)
         {
             _hidden = _hidden + "_";

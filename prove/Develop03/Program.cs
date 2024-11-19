@@ -7,16 +7,13 @@ class Program
         //Console.WriteLine("Hello Develop03 World!");
 
         //New scripture
-        Scripture verse1 = new Scripture();
-        verse1.setScripture("Trust in the Lord with all thine heart; and lean not unto thine own understanding.");
+        Scripture verse1 = new Scripture("Trust in the Lord with all thine heart; and lean not unto thine own understanding.");
 
         //New scripture
-        Scripture verse2 = new Scripture();
-        verse2.setScripture("In all thy ways acknowledge him, and he shall direct thy paths.");
+        Scripture verse2 = new Scripture("In all thy ways acknowledge him, and he shall direct thy paths.");
 
         //Setingg reference
-        Reference reference = new Reference();
-        reference.SetReference("Proverbs 3:5-6");
+        Reference reference = new Reference("Proverbs 3:5-6");
         reference.AddScripture(verse1);
         reference.AddScripture(verse2);
 

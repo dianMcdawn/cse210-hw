@@ -86,26 +86,25 @@ public class Scripture
     {
         if (tries > 0)
         {
-            int count = _words.Count;
-            Random rand = new Random();
-            int goal = rand.Next(1, 3);
-            for (int i = 0; i < goal; i++)
+            int cant = _words.Count;
+            int goal = 2;
+            int start = 0;
+            do
             {
                 Random ind = new Random();
-                int index = ind.Next(count);
+                int index = ind.Next(cant);
 
                 //Checking if the word is already hidded. It will continue with another word until find one
-                if (_words[index].GetState() == 1) { i--; }
-                //If not, it is hidded
-                else { _words[index].SetState(1); }
+                if (_words[index].GetState() != 1) { _words[index].SetState(1); start++; }
 
                 //Cheking if entire scripture is hidded
                 if (GetCurrentScriptureState() == _scriptureHidded)
                 {
                     _hideState = 1; //Set the hidden state to 1
-                    i = goal; //Jump inmediatly to the end of the loop
+                    start = goal; //Jump inmediatly to the end of the loop
                 }
-            }
+                Console.WriteLine(start);
+            } while (start == goal);
         }
     }
 
