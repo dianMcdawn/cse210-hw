@@ -16,15 +16,13 @@ public class Reference
     }
 
     //Printers
-    public void printReference()
+    public void printReference(int tries)
     {
         Console.WriteLine(_title);
-    }
-    public void printScriptures(int tries)
-    {
         foreach (Scripture scripture in _scriptures)
         {
             scripture.printScripture(tries);
         }
     }
+
 }

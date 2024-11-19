@@ -31,8 +31,7 @@ class Program
             Console.Clear();
 
             //Printing reference
-            reference.printReference();
-            reference.printScriptures(tries);
+            reference.printReference(tries);
             Console.WriteLine("");
 
             Console.WriteLine("Press 'enter' to continue or type 'quit' to finish ");

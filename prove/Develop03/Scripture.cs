@@ -36,7 +36,7 @@ public class Scripture
         {
             int count = _words.Count;
             Random rand = new Random();
-            int goal = rand.Next(3);
+            int goal = rand.Next(2);
             for (int i = 0; i < goal; i++)
             {
                 Random ind = new Random();
