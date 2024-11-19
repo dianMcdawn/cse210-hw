@@ -75,7 +75,6 @@ class Program
         } while (option.ToLower() != "quit" && option.ToLower() != "q");//Set option to be uppercase to easy finding an end
 
         //If user select quit option or a activate it by choicing something is not present in the options it will shutdown
-        Console.WriteLine("");
         Console.WriteLine("Thank you for using this program. Have a great day.");
         Console.WriteLine("Good bye");
     }
