@@ -4,41 +4,50 @@ public class Words
     private string _hidden;
     private int _state; //0 show, 1 hidden
 
+    //******************
     //Constructors
+    //******************
     public Words()
     {
         _word = "";
         _state = 0;
-        setHiddenWord(_word);
+        hiddeWord(_word);
     }
     public Words(string word)
     {
         _word = word;
         _state = 0;
-        setHiddenWord(_word);
+        hiddeWord(_word);
     }
     public Words(string word, int state)
     {
         _word = word;
         _state = state;
-        setHiddenWord(_word);
+        hiddeWord(_word);
     }
 
+    //******************
     //Setter
-    private void setHiddenWord(string word)
-    {
-        int lng = _word.Length;
-        for (int i = 0; i < lng; i++)
-        {
-            _hidden = _hidden + "_";
-        }
-    }
+    //******************
     public void setState(int state)
     {
         _state = state;
     }
 
-    //Getter
+    //******************
+    //Getters
+    //******************
+    public string getcurrentWord()
+    {
+        if (_state == 1)
+        {
+            return _hidden;
+        }
+        else
+        {
+            return _word;
+        }
+    }
     public string getWordReplace()
     {
         return _hidden;
@@ -49,7 +58,17 @@ public class Words
         return _state;
     }
 
-    //Printer
+    //******************
+    //Methods
+    //******************
+    private void hiddeWord(string word)
+    {
+        int lng = _word.Length;
+        for (int i = 0; i < lng; i++)
+        {
+            _hidden = _hidden + "_";
+        }
+    }
     public void printWord()
     {
         //Depending on state is the word that will be printed
