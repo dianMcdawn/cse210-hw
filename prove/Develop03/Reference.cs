@@ -60,7 +60,7 @@ public class Reference
         {
             scripture.PrintScripture(tries);
         }
-        HideState();//Lets call hideState here to check if the entire reference is hidden
+        HideState();//Lets call HideState here to check if the entire reference is hidden
     }
 
 }

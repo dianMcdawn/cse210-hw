@@ -65,11 +65,11 @@ class Program
             reference.PrintReference(tries);
             Console.WriteLine("");
 
-            //Getting hidden state
-            if (reference.GetHidenState() == 1) { option = "quit"; }
-
             Console.WriteLine("Press 'enter' to continue or type 'quit' to finish ");
             option = Console.ReadLine();
+
+            //Getting hidden state
+            if (reference.GetHidenState() == 1) { option = "quit"; }
 
             tries = tries + 1;
         } while (option.ToLower() != "quit" && option.ToLower() != "q");//Set option to be uppercase to easy finding an end
