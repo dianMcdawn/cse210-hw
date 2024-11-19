@@ -2,7 +2,7 @@ public class Scripture
 {
     private string _scriptures;
     private string _scriptureHidded;
-    private int _stateHide;
+    private int _hideState;
     private List<Words> _words = new List<Words>();
 
     //******************
@@ -12,12 +12,12 @@ public class Scripture
     {
         _scriptures = "";
         _scriptureHidded = "";
-        _stateHide = 0;
+        _hideState = 0;
     }
     public Scripture(string scripture)
     {
         _scriptures = scripture;
-        _stateHide = 0;
+        _hideState = 0;
         setWords();
         setAllHidden();
     }
@@ -58,6 +58,11 @@ public class Scripture
     //Getters
     //******************
 
+    public int getHideState()
+    {
+        return _hideState;
+    }
+
     private string getCurrentScriptureState()
     {
         string current = "";
@@ -97,7 +102,7 @@ public class Scripture
                 //Cheking if entire scripture is hidded
                 if (getCurrentScriptureState() == _scriptureHidded)
                 {
-                    _stateHide = 1; //Declare that the entire scripture is hidden
+                    _hideState = 1; //Set the hidden state to 1
                     i = goal; //Jump inmediatly to the end of the loop
                 }
             }
