@@ -16,9 +16,9 @@ class Program
 
         //Setingg reference
         Reference reference = new Reference();
-        reference.setReference("Proverbs 3:5-6");
-        reference.addScripture(verse1);
-        reference.addScripture(verse2);
+        reference.SetReference("Proverbs 3:5-6");
+        reference.AddScripture(verse1);
+        reference.AddScripture(verse2);
 
         //Starter variables
         string option;
@@ -31,7 +31,7 @@ class Program
             Console.Clear();
 
             //Printing reference
-            reference.printReference(tries);
+            reference.PrintReference(tries);
             Console.WriteLine("");
 
             Console.WriteLine("Press 'enter' to continue or type 'quit' to finish ");

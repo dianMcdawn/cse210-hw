@@ -20,11 +20,11 @@ public class Reference
     //******************
     //Setters
     //******************
-    public void setReference(string reference)
+    public void SetReference(string reference)
     {
         _title = reference;
     }
-    public void addScripture(Scripture verse)
+    public void AddScripture(Scripture verse)
     {
         _scriptures.Add(verse);
     }
@@ -36,12 +36,12 @@ public class Reference
     //******************
     //Methods
     //******************
-    public void printReference(int tries)
+    public void PrintReference(int tries)
     {
         Console.WriteLine(_title);
         foreach (Scripture scripture in _scriptures)
         {
-            scripture.printScripture(tries);
+            scripture.PrintScripture(tries);
         }
     }
 

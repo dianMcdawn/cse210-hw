@@ -18,8 +18,8 @@ public class Scripture
     {
         _scriptures = scripture;
         _hideState = 0;
-        setWords();
-        setAllHidden();
+        SetWords();
+        SetAllHidden();
     }
 
     //******************
@@ -28,11 +28,11 @@ public class Scripture
     public void setScripture(string scripture)
     {
         _scriptures = scripture;
-        setWords();
-        setAllHidden();
+        SetWords();
+        SetAllHidden();
     }
     //Generate every word from the scripture
-    private void setWords()
+    private void SetWords()
     {
         string[] words = _scriptures.Split(" ");
         foreach (string word in words)
@@ -42,13 +42,13 @@ public class Scripture
         }
     }
     //Transform the entiry scripture into a hidden one. This will help to know if everyword had been hidded.
-    private void setAllHidden()
+    private void SetAllHidden()
     {
         int count = 0;
         int total = _words.Count;
         foreach (Words word in _words)
         {
-            _scriptureHidded = word.getWordReplace();
+            _scriptureHidded = word.GetWordReplace();
             count = count + 1;
             if (count != total) { _scriptureHidded = _scriptureHidded + " "; }
         }
@@ -58,19 +58,19 @@ public class Scripture
     //Getters
     //******************
 
-    public int getHideState()
+    public int GetHideState()
     {
         return _hideState;
     }
 
-    private string getCurrentScriptureState()
+    private string GetCurrentScriptureState()
     {
         string current = "";
         int count = 0;
         int total = _words.Count;
         foreach (Words word in _words)
         {
-            current = word.getcurrentWord();
+            current = word.GetcurrentWord();
             count = count + 1;
             if (count != total) { Console.Write(" "); }
         }
@@ -82,25 +82,25 @@ public class Scripture
     //******************
 
     //This will hide randomly 1 to 3 words, if the try is not the first one
-    private void hiddeWords(int tries)
+    private void HiddeWords(int tries)
     {
         if (tries > 0)
         {
             int count = _words.Count;
             Random rand = new Random();
-            int goal = rand.Next(1, 2);
+            int goal = rand.Next(1, 3);
             for (int i = 0; i < goal; i++)
             {
                 Random ind = new Random();
                 int index = ind.Next(count);
 
                 //Checking if the word is already hidded. It will continue with another word until find one
-                if (_words[index].getState() == 1) { i--; }
+                if (_words[index].GetState() == 1) { i--; }
                 //If not, it is hidded
-                else { _words[index].setState(1); }
+                else { _words[index].SetState(1); }
 
                 //Cheking if entire scripture is hidded
-                if (getCurrentScriptureState() == _scriptureHidded)
+                if (GetCurrentScriptureState() == _scriptureHidded)
                 {
                     _hideState = 1; //Set the hidden state to 1
                     i = goal; //Jump inmediatly to the end of the loop
@@ -109,14 +109,14 @@ public class Scripture
         }
     }
 
-    public void printScripture(int tries)
+    public void PrintScripture(int tries)
     {
         int total = _words.Count;
         int count = 0;
+        HiddeWords(tries);
         foreach (Words word in _words)
         {
-            hiddeWords(tries);
-            word.printWord();
+            word.PrintWord();
             count = count + 1;
             if (count != total) { Console.Write(" "); }
         }
