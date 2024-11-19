@@ -34,10 +34,15 @@ public class Reference
     //Getters
     //******************
 
+    public int GetHidenState()
+    {
+        return _hideState;
+    }
+
     //******************
     //Methods
     //******************
-    private void hideState()
+    private void HideState()
     {
         //1 indicate all is hidden
         int stat = 1;
@@ -55,7 +60,7 @@ public class Reference
         {
             scripture.PrintScripture(tries);
         }
-        hideState();//Lets call hideState here to check if the entire reference is hidden
+        HideState();//Lets call hideState here to check if the entire reference is hidden
     }
 
 }

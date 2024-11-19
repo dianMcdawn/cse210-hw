@@ -6,6 +6,7 @@ class Program
     {
         //Console.WriteLine("Hello Develop03 World!");
 
+        /*
         //New scripture
         Scripture verse1 = new Scripture("Trust in the Lord with all thine heart; and lean not unto thine own understanding.");
 
@@ -16,6 +17,39 @@ class Program
         Reference reference = new Reference("Proverbs 3:5-6");
         reference.AddScripture(verse1);
         reference.AddScripture(verse2);
+        */
+
+        //Reading scriptures from a file
+        string filename = "scriptures.txt";
+        string[] lines = System.IO.File.ReadAllLines(filename);
+        List<string> allScriptures = new List<string>();
+        //Reading everyline
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split("/");
+            string loadedReference = parts[0];
+            allScriptures.Add(loadedReference);
+        }
+
+        // Choosing randomly a scripture
+        Random random = new Random();
+        int index = random.Next(allScriptures.Count);
+        string selectedReference = allScriptures[index];
+
+        //Creating the reference
+        Reference reference = new Reference(selectedReference);
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split("/");
+            string loadedReference = parts[0];
+            string loadedVerse = parts[1];
+
+            if (loadedReference == selectedReference)
+            {
+                Scripture verse = new Scripture(loadedVerse);
+                reference.AddScripture(verse);
+            }
+        }
 
         //Starter variables
         string option;
@@ -30,6 +64,9 @@ class Program
             //Printing reference
             reference.PrintReference(tries);
             Console.WriteLine("");
+
+            //Getting hidden state
+            if (reference.GetHidenState() == 1) { option = "quit"; }
 
             Console.WriteLine("Press 'enter' to continue or type 'quit' to finish ");
             option = Console.ReadLine();
