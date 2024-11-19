@@ -2,7 +2,7 @@ public class Scripture
 {
     private string _scriptures;
     private string _scriptureHidded;
-    private int _hideState;
+    private int _hideState; //1 hidded, 0 not hidded
     private List<Words> _words = new List<Words>();
 
     //******************
@@ -48,7 +48,7 @@ public class Scripture
         int total = _words.Count;
         foreach (Words word in _words)
         {
-            _scriptureHidded = word.GetWordReplace();
+            _scriptureHidded = _scriptureHidded + word.GetWordReplace();
             count = count + 1;
             if (count != total) { _scriptureHidded = _scriptureHidded + " "; }
         }
@@ -57,12 +57,13 @@ public class Scripture
     //******************
     //Getters
     //******************
-
+    //Let use a hide state to indicate if the particular scripture is entirely hidden or not
     public int GetHideState()
     {
         return _hideState;
     }
 
+    //Save the entire scripture current state to be compare with a fully hidden state
     private string GetCurrentScriptureState()
     {
         string current = "";
@@ -70,9 +71,9 @@ public class Scripture
         int total = _words.Count;
         foreach (Words word in _words)
         {
-            current = word.GetcurrentWord();
+            current = current + word.GetcurrentWord();
             count = count + 1;
-            if (count != total) { Console.Write(" "); }
+            if (count != total) { current = current + " "; }
         }
         return current;
     }
@@ -103,8 +104,7 @@ public class Scripture
                     _hideState = 1; //Set the hidden state to 1
                     start = goal; //Jump inmediatly to the end of the loop
                 }
-                Console.WriteLine(start);
-            } while (start == goal);
+            } while (start != goal);
         }
     }
 
@@ -112,7 +112,7 @@ public class Scripture
     {
         int total = _words.Count;
         int count = 0;
-        HiddeWords(tries);
+        HiddeWords(tries); //Hiding words
         foreach (Words word in _words)
         {
             word.PrintWord();
