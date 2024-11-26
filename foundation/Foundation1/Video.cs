@@ -34,8 +34,8 @@ public class Video
     //Setters
     public void SetNewComment(string name, string comment)
     {
-        Comment newcom = new Comment(name, comment);
-        _comments.Add(newcom);
+        Comment newComment = new Comment(name, comment);
+        _comments.Add(newComment);
     }
 
 
