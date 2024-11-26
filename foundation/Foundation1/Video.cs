@@ -1,4 +1,4 @@
-public class Entry
+public class Video
 {
     private string _title;
     private string _author;
@@ -6,25 +6,25 @@ public class Entry
     private List<Comment> _comments = new List<Comment>();
 
     //Constructors
-    public Entry()
+    public Video()
     {
         _title="";
         _author="",
         _length=0;
     }
-    public Entry(string title)
+    public Video(string title)
     {
         _title=title;
         _author="",
         _length=0;
     }
-    public Entry(string title, string author)
+    public Video(string title, string author)
     {
         _title=title;
         _author=author,
         _length=0;
     }
-    public Entry(string title, string author, int seconds)
+    public Video(string title, string author, int seconds)
     {
         _title=title;
         _author=author,
@@ -41,11 +41,16 @@ public class Entry
     //Methods
     public void Display()
     {
-        Console.WriteLine($"Date {_title} - Promt {_author}");
-        Console.WriteLine($"{_lenght}");
+        Console.WriteLine($"Video Title: {_title} - Author: {_author} - Lenght: {_lenght}sec");
+        int numberComments = ShowCommentQuantity();
+        Console.WriteLine($"Number of comments: {numberComments}");
+        foreach(comments as c in _comments)
+        {
+            c.Display();
+        }
     }
 
-    public int ShowCommentQuantity()
+    private int ShowCommentQuantity()
     {
         int count = 0;
         foreach(comments as c in _comments)

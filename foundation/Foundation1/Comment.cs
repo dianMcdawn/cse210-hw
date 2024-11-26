@@ -18,5 +18,12 @@ public class Comment
     {
         _name=name;
         _comment=comment;
-    } 
+    }
+
+    //Methods
+    public void Display()
+    {
+        Console.WriteLine($"Name: {_name}");
+        Console.WriteLine($"Comment: {_comment}");
+    }
 }
