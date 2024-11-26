@@ -1,20 +1,20 @@
-public class Comments
+public class Comment
 {
     private string _name;
     private string _comment;
 
     //Constructors
-    public Comments()
+    public Comment()
     {
         _name="";
         _comment="";
     }
-    public Comments(string name)
+    public Comment(string name)
     {
         _name=name;
         _comment="";
     }
-    public Comments(string name, string comment)
+    public Comment(string name, string comment)
     {
         _name=name;
         _comment=comment;

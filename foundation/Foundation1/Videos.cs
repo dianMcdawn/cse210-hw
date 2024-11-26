@@ -3,7 +3,7 @@ public class Entry
     private string _title;
     private string _author;
     private string _lenght; //Length in seconds
-    private List<Comments> _comments = new List<Comments>();
+    private List<Comment> _comments = new List<Comment>();
 
     //Constructors
     public Entry()
@@ -33,13 +33,25 @@ public class Entry
 
     //Setters
     public void SetNewComment(string name, string comment){
-        Comments newcom = new Comments(name,comment);
+        Comment newcom = new Comment(name,comment);
         _comments.Add(newcom);
     }
 
+
+    //Methods
     public void Display()
     {
         Console.WriteLine($"Date {_title} - Promt {_author}");
         Console.WriteLine($"{_lenght}");
+    }
+
+    public int ShowCommentQuantity()
+    {
+        int count = 0;
+        foreach(comments as c in _comments)
+        {
+            count++;
+        }
+        return count;
     }
 }
