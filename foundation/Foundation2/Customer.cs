@@ -14,6 +14,11 @@ public class Customer
     {
         _name = name;
     }
+    public Customer(string name, string street, string city, string state, string country)
+    {
+        _name = name;
+        SetAddress(street, city, state, country);
+    }
     //************
     //SETTERS
     //************
