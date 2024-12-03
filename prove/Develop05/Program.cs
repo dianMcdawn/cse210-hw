@@ -180,15 +180,25 @@ class Program
                     do
                     {
                         Console.Write("\b \b");
+                        int state = 1;
+                        string quest = "";
 
-                        //Choosing randomly a prompt from all possible questions
-                        Random randomQuestion = new Random();
-                        index = randomQuestion.Next(reflection.GetQuestionList().Count);
-                        string question = reflection.GetQuestionList()[index];
+                        //Choosing randomly a prompt from all possible questions, bypassing all of those whose state is 1
+                        do
+                        {
+                            Random randomQuestion = new Random();
+                            index = randomQuestion.Next(reflection.GetQuestionList().Count);
+                            Questions question = reflection.GetQuestionList()[index];
+                            quest = question.GetQuestion();
+                            state = question.GetState();
+                            if (state == 0) { question.SetState(1); }//Change the questions state to not being repeated
+                        } while (state == 1);
+
+                        //Printing question
                         Console.WriteLine("");
-                        Console.Write(question + " ");
-
+                        Console.Write(quest + " ");
                         Console.Write("|");
+
                         for (j = 0; j < 4; j++)
                         {
                             Thread.Sleep(500);
@@ -204,6 +214,8 @@ class Program
                             Console.Write("\b \b");
                             Console.Write("|");
                         }
+                        Console.Write("\b \b");
+
                         currentTime = DateTime.Now;
                         Console.WriteLine("");
                     } while (currentTime < futureTime);

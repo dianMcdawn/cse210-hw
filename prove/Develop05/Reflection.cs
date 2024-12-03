@@ -1,7 +1,7 @@
 public class Reflection : Activity
 {
     private List<string> _prompt = new List<string>();
-    private List<string> _question = new List<string>();
+    private List<Questions> _question = new List<Questions>();
 
     //Constructors
     public Reflection(string title, string message, string promt, string question) : base(title, message)
@@ -20,13 +20,14 @@ public class Reflection : Activity
     }
     public void SetQuestion(string question)
     {
-        _question.Add(question);
+        Questions quest = new Questions(question, 0);
+        _question.Add(quest);
     }
     public List<string> GetPromtList()
     {
         return _prompt;
     }
-    public List<string> GetQuestionList()
+    public List<Questions> GetQuestionList()
     {
         return _question;
     }
