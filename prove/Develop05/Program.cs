@@ -84,7 +84,7 @@ class Program
                 else if (option == 3)
                 {
                     listing.InitiatingActivity();
-                    listing.InititateReflectionActivity();
+                    listing.InititateListingActivity();
                     listing.EndingActivity();
                 }//Option 3
 
