@@ -4,9 +4,9 @@ public class Listing : Reflection
     private int _numberItems;
 
     //Constructor
-    public Listing(string title, string message, string promt) : base(title, message, promt)
+    public Listing(string title, string message, int duration, string promt) : base(title, message, duration, promt)
     {
-
+        _numberItems = 0;
     }
     //Methods
     public void SetResponse(string response)

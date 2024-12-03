@@ -39,10 +39,10 @@ class Program
             //Setting Classes Data
 
             //Breathing
-            Breathing breathing = new Breathing("Breathing", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
+            Breathing breathing = new Breathing("Breathing", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.", 0);
 
             //Reflection
-            Reflection reflection = new Reflection("Reflection", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.", "Think of a time when you stood up for someone else.", "Why was this experience meaningful to you?");
+            Reflection reflection = new Reflection("Reflection", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.", 0, "Think of a time when you stood up for someone else.", "Why was this experience meaningful to you?");
             reflection.SetPrompt("Think of a time when you did something really difficult.");
             reflection.SetPrompt("Think of a time when you helped someone in need.");
             reflection.SetPrompt("Think of a time when you did something truly selfless.");
@@ -56,7 +56,7 @@ class Program
             reflection.SetQuestion("How can you keep this experience in mind in the future?");
 
             //Listing
-            Listing listing = new Listing("Listing", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.", "Who are people that you appreciate?");
+            Listing listing = new Listing("Listing", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.", 0, "Who are people that you appreciate?");
             listing.SetPrompt("What are personal strengths of yours?");
             listing.SetPrompt("Who are people that you have helped this week?");
             listing.SetPrompt("When have you felt the Holy Ghost this month?");
@@ -83,6 +83,11 @@ class Program
                 Console.Write("How long in seconds (aprox.), would you want to work in this activity: ");
                 string duration = Console.ReadLine();
                 int seconds = int.Parse(duration);
+
+                //Setting Duration
+                if (option == 1) { breathing.SetDuration(seconds); }
+                else if (option == 2) { reflection.SetDuration(seconds); }
+                else if (option == 3) { listing.SetDuration(seconds); }
 
                 //Inititating some variables
                 int index = 0;

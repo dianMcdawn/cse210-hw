@@ -4,12 +4,12 @@ public class Reflection : Activity
     private List<Questions> _question = new List<Questions>();
 
     //Constructors
-    public Reflection(string title, string message, string promt, string question) : base(title, message)
+    public Reflection(string title, string message, int duration, string promt, string question) : base(title, message, duration)
     {
         SetPrompt(promt);
         SetQuestion(question);
     }
-    public Reflection(string title, string message, string promt) : base(title, message)
+    public Reflection(string title, string message, int duration, string promt) : base(title, message, duration)
     {
         SetPrompt(promt);
     }

@@ -3,7 +3,7 @@ public class Breathing : Activity
     private int _breathCount;
 
     //Constructor
-    public Breathing(string title, string message) : base(title, message)
+    public Breathing(string title, string message, int duration) : base(title, message, duration)
     {
         _breathCount = 0;
     }
