@@ -38,6 +38,9 @@ class Program
 
             //Setting Classes Data
 
+            //Breathing
+            Breathing breathing = new Breathing("Breathing", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
+
             //Reflection
             Reflection reflection = new Reflection("Reflection", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.", "Think of a time when you stood up for someone else.", "Why was this experience meaningful to you?");
             reflection.SetPrompt("Think of a time when you did something really difficult.");
@@ -59,110 +62,218 @@ class Program
             listing.SetPrompt("When have you felt the Holy Ghost this month?");
             listing.SetPrompt("Who are some of your personal heroes?");
 
-            //Using the option choosed to find what to do
-            if (option == 1)
+            //Some variables
+            string title = "";
+            string message = "";
+
+            if (option > 0 && option < 4)
             {
+                //Clearing screen
+                Console.Clear();
+
+                //Finding title and message
+                if (option == 1) { title = breathing.GetTitle(); message = breathing.GetMessage(); }
+                else if (option == 2) { title = reflection.GetTitle(); message = reflection.GetMessage(); }
+                else if (option == 3) { title = listing.GetTitle(); message = listing.GetMessage(); }
+
+                //Showing title and message according the activity
+                Console.WriteLine("Welcome to the " + title + " Activity");
                 Console.WriteLine("");
-                Console.WriteLine("This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
-                Console.WriteLine("Please, input how long in seconds (aprox.) you want to work in this activity: ");
+                Console.WriteLine(message);
+                Console.Write("How long in seconds (aprox.), would you want to work in this activity: ");
                 string duration = Console.ReadLine();
                 int seconds = int.Parse(duration);
 
-                int timer = 0;
-                do
-                {
-                    Console.WriteLine("Breathe in...");
-                    Thread.Sleep(4000);
-                    Console.WriteLine("Breathe out...");
-                    Thread.Sleep(4000);
-                    timer += 8;
-                } while (timer < seconds);
-            }
-            else if (option == 2)
-            {
-                Console.WriteLine("");
-                Console.WriteLine(reflection.GetMessage());
-                Console.WriteLine("Please, input how long in seconds (aprox.) you want to work in this activity: ");
-                string duration = Console.ReadLine();
-                int seconds = int.Parse(duration);
-
-                //Index random
+                //Inititating some variables
                 int index = 0;
+                int i = 0;
+                int j = 0;
 
-                //Choosing randomly a prompt from all possible prompts
-                Random randomPrompt = new Random();
-                index = randomPrompt.Next(reflection.GetPromtList().Count);
-                string prompt = reflection.GetPromtList()[index];
-                Console.WriteLine(prompt);
-                Console.WriteLine("");
+                //Clearing screen
+                Console.Clear();
 
-                int timer = 0;
-                do
+                //Waiting room
+                Console.WriteLine("Get ready..");
+                Console.Write("+");
+                for (j = 0; j < 8; j++)
                 {
+                    Thread.Sleep(500);
                     Console.Write("\b \b");
-
-                    //Choosing randomly a prompt from all possible questions
-                    Random randomQuestion = new Random();
-                    index = randomQuestion.Next(reflection.GetQuestionList().Count);
-                    string question = reflection.GetQuestionList()[index];
-                    Console.WriteLine(question);
-
+                    Console.Write("x");
+                    Thread.Sleep(500);
+                    Console.Write("\b \b");
                     Console.Write("+");
-                    for (int j = 0; j < 8; j++)
+                }
+                Console.Write("\b \b");
+
+                //FIRST ACTIVITY
+                if (option == 1)
+                {
+                    DateTime startTime = DateTime.Now;
+                    DateTime futureTime = startTime.AddSeconds(seconds);
+                    DateTime currentTime = DateTime.Now;
+                    int breathCount = 0;
+                    do
                     {
-                        Thread.Sleep(500);
-                        Console.Write("\b \b"); // Erase the + character
-                        Console.Write("x"); // Replace it with the - character
-                        Thread.Sleep(500);
-                        Console.Write("\b \b"); // Erase the + character
-                        Console.Write("+"); // Replace it with the - character
-                    }
+                        Console.Write("\b \b");
+                        Console.WriteLine("");
+                        Console.WriteLine("");
+                        Console.Write("Breathe in...4");
+                        i = 4;
+                        do
+                        {
+                            Thread.Sleep(1000);
+                            i--;
+                            Console.Write("\b \b");
+                            Console.Write(i);
+                        } while (i > 0);
+                        Console.WriteLine("");
+                        Console.Write("Breathe out...6");
+                        j = 6;
+                        do
+                        {
+                            Thread.Sleep(1000);
+                            j--;
+                            Console.Write("\b \b");
+                            Console.Write(j);
+                        } while (j > 0);
+                        Console.WriteLine("");
+                        currentTime = DateTime.Now;
+                        breathCount++;
+                    } while (currentTime < futureTime);
+                    //Counting how many times in and out where made
+                    breathing.SetBreathCount(breathCount);
+                }//Option 1
 
-                    timer += 8;
-                } while (timer < seconds);
-
-
-            }
-            else if (option == 3)
-            {
-                Console.WriteLine("");
-                Console.WriteLine(listing.GetMessage());
-                Console.WriteLine("Please, input how long in seconds (aprox.) you want to work in this activity: ");
-                string duration = Console.ReadLine();
-                int seconds = int.Parse(duration);
-
-                //Index random
-                int index = 0;
-
-                //Choosing randomly a prompt from all possible prompts
-                Random randomPrompt = new Random();
-                index = randomPrompt.Next(listing.GetPromtList().Count);
-                string prompt = listing.GetPromtList()[index];
-                Console.WriteLine(prompt);
-                Console.WriteLine("");
-
-                int timer = 15;
-                Console.Write(timer);
-                do
+                //SECOND ACTIVITY
+                else if (option == 2)
                 {
-                    Thread.Sleep(1000);
-                    timer--;
+                    //Choosing randomly a prompt from all possible prompts
+                    Random randomPrompt = new Random();
+                    index = randomPrompt.Next(reflection.GetPromtList().Count);
+                    string prompt = reflection.GetPromtList()[index];
+                    Console.WriteLine("Consider the following prompt:");
+                    Console.WriteLine("");
+                    Console.WriteLine("---" + prompt + "---");
+                    Console.WriteLine("");
+                    Console.Write("When you have something in mind, press enter to continue.");
+                    Console.ReadLine();
+
+                    Console.WriteLine("Now ponder on each of the following questions as the related to this experience.");
+                    Console.WriteLine("");
+                    Console.Write("You may begin in: 5");
+                    i = 5;
+                    do
+                    {
+                        Thread.Sleep(1000);
+                        i--;
+                        Console.Write("\b \b");
+                        Console.Write(i);
+                    } while (i > 0);
+
+                    //Clearing screen
+                    Console.Clear();
+
+                    DateTime startTime = DateTime.Now;
+                    DateTime futureTime = startTime.AddSeconds(seconds);
+                    DateTime currentTime = DateTime.Now;
+                    do
+                    {
+                        Console.Write("\b \b");
+
+                        //Choosing randomly a prompt from all possible questions
+                        Random randomQuestion = new Random();
+                        index = randomQuestion.Next(reflection.GetQuestionList().Count);
+                        string question = reflection.GetQuestionList()[index];
+                        Console.WriteLine("");
+                        Console.Write(question + " ");
+
+                        Console.Write("|");
+                        for (j = 0; j < 4; j++)
+                        {
+                            Thread.Sleep(500);
+                            Console.Write("\b \b");
+                            Console.Write("/");
+                            Thread.Sleep(500);
+                            Console.Write("\b \b");
+                            Console.Write("-");
+                            Thread.Sleep(500);
+                            Console.Write("\b \b");
+                            Console.Write("\\");
+                            Thread.Sleep(500);
+                            Console.Write("\b \b");
+                            Console.Write("|");
+                        }
+                        currentTime = DateTime.Now;
+                        Console.WriteLine("");
+                    } while (currentTime < futureTime);
+                }//Option 2
+
+                //THIRD ACTIVITY
+                else if (option == 3)
+                {
+                    //Choosing randomly a prompt from all possible prompts
+                    Random randomPrompt = new Random();
+                    index = randomPrompt.Next(listing.GetPromtList().Count);
+                    string prompt = listing.GetPromtList()[index];
+                    Console.WriteLine("List as many responses you can to the following prompt:");
+                    Console.WriteLine(prompt);
+                    Console.WriteLine("");
+                    Console.Write("You may begin in: 5");
+                    i = 5;
+                    do
+                    {
+                        Thread.Sleep(1000);
+                        i--;
+                        Console.Write("\b \b");
+                        Console.Write(i);
+                    } while (i > 0);
+
+                    //Clearing screen
+                    Console.Clear();
+
+                    //Now is time for user to input data
+                    Console.WriteLine("Now list your responses!!!");
+                    DateTime startTime = DateTime.Now;
+                    DateTime futureTime = startTime.AddSeconds(seconds);
+                    DateTime currentTime = DateTime.Now;
+                    do
+                    {
+                        string respon = Console.ReadLine();
+                        listing.SetResponse(respon);
+                        currentTime = DateTime.Now;
+                    } while (currentTime < futureTime);
+
+                    //Showing how many responses are at the end
+                    Console.WriteLine($"You listed {listing.GetNumberOfItems()} items");
+                }//Option 3
+
+                //**************************************************
+
+                Console.WriteLine("");
+                Console.WriteLine("Well done!!");
+                Console.Write("+");
+                for (j = 0; j < 8; j++)
+                {
+                    Thread.Sleep(500);
                     Console.Write("\b \b");
-                    Console.Write("\b\b \b");
-                    Console.Write(timer);
-                } while (timer != 0);
-
-                //Now is time for user to input data
-                Console.WriteLine("Now list your responses!!!");
-                DateTime startTime = DateTime.Now;
-                DateTime futureTime = startTime.AddSeconds(seconds);
-                DateTime currentTime = DateTime.Now;
-                do
+                    Console.Write("x");
+                    Thread.Sleep(500);
+                    Console.Write("\b \b");
+                    Console.Write("+");
+                }
+                Console.Write("\b \b");
+                Console.WriteLine($"You have completed another {seconds} seconds of the {title} Activity.");
+                Console.Write("+");
+                for (j = 0; j < 8; j++)
                 {
-                    string respon = Console.ReadLine();
-                    listing.SetResponse(respon);
-                    currentTime = DateTime.Now;
-                } while (currentTime < futureTime);
+                    Thread.Sleep(500);
+                    Console.Write("\b \b");
+                    Console.Write("x");
+                    Thread.Sleep(500);
+                    Console.Write("\b \b");
+                    Console.Write("+");
+                }
 
             }
         } while (option != 4);
