@@ -28,10 +28,14 @@ public abstract class Goal
     {
         return _name;
     }
-    /*public string GetDetails()
+    public string GetDescription()
     {
         return _description;
-    }*/
+    }
+    public string GetDifficulty()
+    {
+        return _difficulty;
+    }
     public int GetPoints()
     {
         return _points;
@@ -42,4 +46,5 @@ public abstract class Goal
     //Methods
     public abstract void RecordEvent();
     public abstract void IsComplete();
+    public abstract void SaveToText();
 }

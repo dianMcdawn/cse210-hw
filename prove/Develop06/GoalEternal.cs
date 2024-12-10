@@ -2,6 +2,7 @@ public class GoalEternal : Goal
 {
     private string _periodGoal;
     private DateOnly _dateStart;
+    private DateOnly _dateUpdate;
     private List<GoalEvent> _events = new List<GoalEvent>();
 
     //constructor
@@ -9,12 +10,13 @@ public class GoalEternal : Goal
     {
         _periodGoal = periodGoal;
         _dateStart = date;
+        _dateUpdate = date;
     }
     //Getters
     public override string GetRepresentation()
     {
         string typeGoal = "Eternal Goal";
-        return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_events.Count()} | Points : {GetScore()}";
+        return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_events.Count()} | Last Updated: {_dateUpdate}  | Points : {GetScore()}";
     }
     public override string GetDetails()
     {
@@ -35,6 +37,15 @@ public class GoalEternal : Goal
         DateOnly today = DateOnly.FromDateTime(DateTime.Now);
         GoalEvent evento = new GoalEvent(today);
         _events.Add(evento);
+        _dateUpdate = today;
     }
     public override void IsComplete() { }
+    public override void SaveToText(string fileName, string playerName)
+    {
+        using (StreamWriter outputFile = new StreamWriter(fileName))
+        {
+            outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{base.GetPoints()};0;{base.GetDifficulty()};0;;");
+        }
+        
+    }
 }

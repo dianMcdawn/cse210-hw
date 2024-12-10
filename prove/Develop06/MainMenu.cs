@@ -196,7 +196,7 @@ public class MainMenu
     {
         //Some global variables
         int choise;
-        int last = _goals.Count();
+        int last = _goals.Count() + 1;
 
         //Main Menu
         do
@@ -212,8 +212,8 @@ public class MainMenu
                 Console.WriteLine($"{count}. {goal.GetRepresentation()}");
                 count++;
             }
-            Console.Write($"{last}. Return");
-            Console.Write("What would you choose? (Number) ");
+            Console.WriteLine($"{last}. Return");
+            Console.WriteLine("What would you choose? (Number) ");
             string opt = Console.ReadLine();
             choise = int.Parse(opt);
             if (choise < 1 || choise > last)
@@ -224,22 +224,20 @@ public class MainMenu
             if (choise != last)
             {
                 _goals[choise].RecordEvent();
+                //Clearing screen
+                Console.Clear();
+                Console.WriteLine("Event recorded.");
+                Console.ReadLine();
             }
         } while (choise != last);
     }
     private void SaveGoals()
     {
         string fileName = "goals.txt";
-
-        using (StreamWriter outputFile = new StreamWriter(fileName))
+        /*foreach(Goal goal in _goals)
         {
-            // You can add text to the file with the WriteLine method
-            outputFile.WriteLine("This will be the first line in the file.");
-
-            // You can use the $ and include variables just like with Console.WriteLine
-            string color = "Blue";
-            outputFile.WriteLine($"My favorite color is {color}");
-        }
+            goal.SaveToText(fileName,_playerName);
+        }*/
     }
     private void LoadGoals() { }
 

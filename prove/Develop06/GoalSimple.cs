@@ -55,4 +55,12 @@ public class GoalSimple : Goal
         if (_event != null) { _isComplete = true; }
         else { _isComplete = false; }
     }
+    public override void SaveToText(string fileName, string playerName)
+    {
+        using (StreamWriter outputFile = new StreamWriter(fileName))
+        {
+            outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{base.GetPoints()};0;{base.GetDifficulty()};0;;");
+        }
+
+    }
 }

@@ -14,6 +14,7 @@ public class GoalCheck : Goal
         _goalToAchieve = goalToAchieve;
         _lesserPoints = lesserPoints;
         _dateStart = date;
+        _dateComplete = date;
     }
     //Getters
     public override string GetRepresentation()
@@ -61,5 +62,13 @@ public class GoalCheck : Goal
     {
         if (_events.Count() == _goalToAchieve) { _isComplete = true; }
         else { _isComplete = false; }
+    }
+    public override void SaveToText(string fileName, string playerName)
+    {
+        using (StreamWriter outputFile = new StreamWriter(fileName))
+        {
+            outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{base.GetPoints()};0;{base.GetDifficulty()};0;;");
+        }
+        
     }
 }
