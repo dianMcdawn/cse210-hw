@@ -4,13 +4,17 @@ public class MainMenu
     private int _score;
     private string _playerName;
 
-    //Constructor
+    //********************************************
+    //                CONSTRUCTORS
+    //********************************************
     public MainMenu(string name)
     {
         _playerName = name;
         _score = 0;
     }
-    //Setters
+    //***************************************
+    //                SETTERS
+    //***************************************
     private void SetPlayerName(string name)
     {
         _playerName = name;
@@ -24,8 +28,9 @@ public class MainMenu
         }
         _score = score;
     }
-
-    //Methods
+    //***************************************
+    //                METHODS
+    //***************************************
     public void Start()
     {
         //Some global variables
@@ -237,11 +242,43 @@ public class MainMenu
             //If the option is nor to return previous screen
             if (choise != last)
             {
+                //Index to identify the goal to edit
                 int index = choise - 1;
-                _goals[index].RecordEvent();
+
+                //If goal is not completed yet, let save a new event
+                string message = "";
+                if (_goals[index].IsComplete() == false)
+                {
+                    _goals[index].RecordEvent();
+                    message = "Event have been recorded.";
+
+                    if (_goals[index].GetGoalType() == 1)
+                    {
+                        message = message + "\n" + $"Your goal has been Completed!!! Congratulation, you won {_goals[index].GetPoints()} points";
+                    }
+                    else if (_goals[index].GetGoalType() == 2)
+                    {
+                        message = message + "\n" + $"Your goal task has been recorded!!! Congratulation, you won {_goals[index].GetLessPoints()} points";
+                        //Let call IsComplete again, maybe the new added event completed the goal
+                        if (_goals[index].IsComplete() == true)
+                        {
+                            message = message + "\n" + $"Your goal has been Completed!!! Congratulation, you won {_goals[index].GetPoints()} extra points";
+                        }
+                    }
+                    else if (_goals[index].GetGoalType() == 3)
+                    {
+                        message = message + "\n" + $"Your goal task has been recorded!!! Congratulation, you won {_goals[index].GetPoints()} points";
+                    }
+                }
+                else
+                {
+                    message = "This event can't be recorded, you already completed this goal!.";
+                }
+
                 //Clearing screen
                 Console.Clear();
-                Console.WriteLine("Event recorded.");
+                Console.WriteLine(message);
+
                 Console.ReadLine();
             }
         } while (choise != last);

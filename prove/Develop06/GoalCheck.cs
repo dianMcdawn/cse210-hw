@@ -1,13 +1,16 @@
 public class GoalCheck : Goal
 {
     private bool _isComplete;
+    private int _amountCompleted;
     private int _goalToAchieve;
     private int _lesserPoints;
     private DateOnly _dateStart;
     private DateOnly _dateComplete;
     private List<GoalEvent> _events = new List<GoalEvent>();
 
-    //constructor
+    //********************************************
+    //                CONSTRUCTORS
+    //********************************************
     public GoalCheck(int goalType, string name, string description, int point, string difficulty, int goalToAchieve, int lesserPoints, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(goalType, name, description, point, difficulty)
     {
         _isComplete = isComplete;
@@ -16,12 +19,16 @@ public class GoalCheck : Goal
         _dateStart = dateStart;
         _dateComplete = dateUpdate;
     }
-    //Setter
+    //***************************************
+    //                SETTERS
+    //***************************************
     public override void SetNewGoalEvent(GoalEvent evento)
     {
         _events.Add(evento);
     }
-    //Getters
+    //***************************************
+    //                GETTERS
+    //***************************************
     public override string GetRepresentation()
     {
         IsComplete();
@@ -42,7 +49,11 @@ public class GoalCheck : Goal
         {
             details = details + "\n" + evento.GetEventSummary();
         }
-        return details+"\n";
+        return details + "\n";
+    }
+    public override int GetLessPoints()
+    {
+        return _lesserPoints;
     }
     public override int GetScore()
     {
@@ -55,7 +66,9 @@ public class GoalCheck : Goal
             return base.GetPoints() + (_events.Count() * _lesserPoints);
         }
     }
-    //Methods
+    //***************************************
+    //                METHODS
+    //***************************************
     public override void RecordEvent()
     {
         DateOnly today = DateOnly.FromDateTime(DateTime.Now);
@@ -63,10 +76,11 @@ public class GoalCheck : Goal
         _events.Add(evento);
         _dateComplete = today;
     }
-    public override void IsComplete()
+    public override bool IsComplete()
     {
-        if (_events.Count() == _goalToAchieve) { _isComplete = true; }
-        else { _isComplete = false; }
+        if (_events.Count() == _goalToAchieve) { _isComplete = true; _amountCompleted = _goalToAchieve; }
+        else { _isComplete = false; _amountCompleted = _events.Count(); }
+        return _isComplete;
     }
     public override string GetStringSave(string playerName)
     {

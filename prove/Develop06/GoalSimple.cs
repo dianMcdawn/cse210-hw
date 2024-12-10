@@ -7,19 +7,25 @@ public class GoalSimple : Goal
     private DateOnly _dateComplete;
     private GoalEvent _event;
 
-    //constructor
+    //********************************************
+    //                CONSTRUCTORS
+    //********************************************
     public GoalSimple(int goalType, string name, string description, int point, string difficulty, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(goalType, name, description, point, difficulty)
     {
         _isComplete = isComplete;
         _dateStart = dateStart;
         _dateComplete = dateUpdate;
     }
-    //Setter
+    //***************************************
+    //                SETTERS
+    //***************************************
     public override void SetNewGoalEvent(GoalEvent evento)
     {
         _event = evento;
     }
-    //Getters
+    //***************************************
+    //                GETTERS
+    //***************************************
     public override string GetRepresentation()
     {
         IsComplete();
@@ -46,7 +52,6 @@ public class GoalSimple : Goal
         }
         return details + "\n";
     }
-    //Getters
     public override int GetScore()
     {
         if (_isComplete == false)
@@ -58,18 +63,22 @@ public class GoalSimple : Goal
             return base.GetPoints();
         }
     }
+    public override int GetLessPoints(){return 0;}
 
-    //Mehtods
+    //***************************************
+    //                METHODS
+    //***************************************
     public override void RecordEvent()
     {
         DateOnly today = DateOnly.FromDateTime(DateTime.Now);
         _event = new GoalEvent(today);
         _dateComplete = today;
     }
-    public override void IsComplete()
+    public override bool IsComplete()
     {
         if (_event != null) { _isComplete = true; }
         else { _isComplete = false; }
+        return _isComplete;
     }
     public override string GetStringSave(string playerName)
     {

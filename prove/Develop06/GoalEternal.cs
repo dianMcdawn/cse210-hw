@@ -5,19 +5,25 @@ public class GoalEternal : Goal
     private DateOnly _dateUpdate;
     private List<GoalEvent> _events = new List<GoalEvent>();
 
-    //constructor
+    //********************************************
+    //                CONSTRUCTORS
+    //********************************************
     public GoalEternal(int goalType, string name, string description, int point, string difficulty, string periodGoal, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(goalType, name, description, point, difficulty)
     {
         _periodGoal = periodGoal;
         _dateStart = dateStart;
         _dateUpdate = dateUpdate;
     }
-    //Setter
+    //***************************************
+    //                SETTERS
+    //***************************************
     public override void SetNewGoalEvent(GoalEvent evento)
     {
         _events.Add(evento);
     }
-    //Getters
+    //***************************************
+    //                GETTERS
+    //***************************************
     public override string GetRepresentation()
     {
         string typeGoal = "Eternal Goal";
@@ -36,7 +42,10 @@ public class GoalEternal : Goal
     {
         return base.GetPoints() * _events.Count();
     }
-    //Methods
+    public override int GetLessPoints() { return 0; }
+    //***************************************
+    //                METHODS
+    //***************************************
     public override void RecordEvent()
     {
         DateOnly today = DateOnly.FromDateTime(DateTime.Now);
@@ -44,7 +53,7 @@ public class GoalEternal : Goal
         _events.Add(evento);
         _dateUpdate = today;
     }
-    public override void IsComplete() { }
+    public override bool IsComplete() { return false; }
     public override string GetStringSave(string playerName)
     {
         string data = "";

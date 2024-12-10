@@ -2,17 +2,23 @@ public class GoalEvent
 {
     private DateOnly _date;
 
-    //Cosntructor
+    //********************************************
+    //                CONSTRUCTORS
+    //********************************************
     public GoalEvent(DateOnly date)
     {
         _date = date;
     }
-    //Getter
+    //***************************************
+    //                GETTERS
+    //***************************************
     public DateOnly GetDate()
     {
         return _date;
     }
-    //Methods
+    //***************************************
+    //                METHODS
+    //***************************************
     public string GetEventSummary()
     {
         return $"On {_date} was added this mark event";

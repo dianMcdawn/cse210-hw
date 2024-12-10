@@ -6,7 +6,9 @@ public abstract class Goal
     private string _difficulty;
     private int _goalType;
 
-    //Constructor
+    //********************************************
+    //                CONSTRUCTORS
+    //********************************************
     public Goal()
     {
         _name = "";
@@ -22,10 +24,14 @@ public abstract class Goal
         _difficulty = difficulty;
         _goalType = goalType;
     }
-    //Setters
+    //***************************************
+    //                SETTERS
+    //***************************************
     public abstract void SetNewGoalEvent(GoalEvent evento);
-    //Getters
 
+    //***************************************
+    //                GETTERS
+    //***************************************
     public string GetName()
     {
         return _name;
@@ -42,6 +48,7 @@ public abstract class Goal
     {
         return _points;
     }
+    public abstract int GetLessPoints();
     public int GetGoalType()
     {
         return _goalType;
@@ -51,7 +58,9 @@ public abstract class Goal
     public abstract string GetDetails();
     public abstract string GetStringSave(string playerName);
 
-    //Methods
+    //***************************************
+    //                METHODS
+    //***************************************
     public abstract void RecordEvent();
-    public abstract void IsComplete();
+    public abstract bool IsComplete();
 }
