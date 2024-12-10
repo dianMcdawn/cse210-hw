@@ -13,6 +13,7 @@ class Program
         /*
         This programm take track of all events of every type by using a new class call GoalEvent.
         On it, a datetime data is saved to show when a mark has been added.
+        It also has a simple system of leveling up every 1000 points!
         */
 
         //Starting Main Class

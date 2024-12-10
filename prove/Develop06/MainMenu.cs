@@ -3,6 +3,7 @@ public class MainMenu
     private List<Goal> _goals = new List<Goal>();
     private int _score;
     private string _playerName;
+    private int _level; //Each 1000 points you levelup 1lv
 
     //********************************************
     //                CONSTRUCTORS
@@ -11,14 +12,11 @@ public class MainMenu
     {
         _playerName = name;
         _score = 0;
+        _level = 1;
     }
     //***************************************
     //                SETTERS
     //***************************************
-    private void SetPlayerName(string name)
-    {
-        _playerName = name;
-    }
     private void SetScore()
     {
         int score = 0;
@@ -27,6 +25,17 @@ public class MainMenu
             score = score + goal.GetScore();
         }
         _score = score;
+    }
+    private void SetLevel()
+    {
+        int level = 1;
+        int score = 0;
+        foreach (Goal goal in _goals)
+        {
+            score = score + goal.GetScore();
+        }
+        if (score == 0) { level = 1; } else { level = score / 1000; }
+        if (level != _level) { Console.WriteLine($"Congratulation!!! You now are Level {level}!!!"); _level = level; }
     }
     //***************************************
     //                METHODS
@@ -113,9 +122,12 @@ public class MainMenu
 
         //Refreshing total Score
         SetScore();
+        //Setting levels
+        SetLevel();
 
         //Writing data
         Console.WriteLine($"Player name: {_playerName}");
+        Console.WriteLine($"Your level is: {_level}");
         Console.WriteLine($"Total Goals: {_goals.Count()}");
         Console.WriteLine($"Total Score: {_score} points");
         Console.ReadLine();
@@ -264,6 +276,8 @@ public class MainMenu
                 if (_goals[index].IsComplete() == false)
                 {
                     _goals[index].RecordEvent();
+                    //Set level to check if it change
+                    SetLevel();
                 }
                 else
                 {
