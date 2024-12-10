@@ -1,28 +1,20 @@
 public class GoalEternal : Goal
 {
-    private bool _isComplete;
     private string _periodGoal;
-    private DateOnly _date;
+    private DateOnly _dateStart;
     private List<GoalEvent> _events = new List<GoalEvent>();
 
     //constructor
     public GoalEternal(string name, string description, int point, string difficulty, string periodGoal, bool isComplete, DateOnly date) : base(name, description, point, difficulty)
     {
-        _isComplete = isComplete;
         _periodGoal = periodGoal;
-        _date = date;
+        _dateStart = date;
     }
     //Getters
     public override string GetRepresentation()
     {
-        if (_isComplete == false)
-        {
-            return $"{base.GetName()} Complete State: {_isComplete}";
-        }
-        else
-        {
-            return $"{base.GetName()} Complete State: {_isComplete} on {_date}";
-        }
+        string typeGoal = "Eternal Goal";
+        return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_events.Count()}";
     }
     //Methods
     public override void RecordEvent()
@@ -31,4 +23,5 @@ public class GoalEternal : Goal
         GoalEvent evento = new GoalEvent(today);
         _events.Add(evento);
     }
+    public override void IsComplete() { }
 }

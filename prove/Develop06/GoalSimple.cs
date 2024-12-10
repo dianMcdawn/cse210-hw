@@ -1,25 +1,28 @@
 public class GoalSimple : Goal
 {
     private bool _isComplete;
-    private DateOnly _date;
+    private DateOnly _dateStart;
+    private DateOnly _dateComplete;
     private GoalEvent _event;
 
     //constructor
     public GoalSimple(string name, string description, int point, string difficulty, bool isComplete, DateOnly date) : base(name, description, point, difficulty)
     {
         _isComplete = isComplete;
-        _date = date;
+        _dateStart = date;
     }
     //Getters
     public override string GetRepresentation()
     {
+        IsComplete();
+        string typeGoal = "Simple Goal";
         if (_isComplete == false)
         {
-            return $"{base.GetName().PadRight(15)} Complete State: {_isComplete}";
+            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | State: Not Completed";
         }
         else
         {
-            return $"{base.GetName().PadRight(15)} Complete State: {_isComplete} on {_date}";
+            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | State: Completed on {_dateComplete}";
         }
     }
 
@@ -28,6 +31,11 @@ public class GoalSimple : Goal
     {
         DateOnly today = DateOnly.FromDateTime(DateTime.Now);
         _event = new GoalEvent(today);
+        _dateComplete = today;
     }
-    /*public void IsComplete() { }*/
+    public override void IsComplete()
+    {
+        if (_event != null) { _isComplete = true; }
+        else { _isComplete = false; }
+    }
 }

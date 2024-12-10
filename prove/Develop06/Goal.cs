@@ -39,5 +39,5 @@ public abstract class Goal
 
     //Methods
     public abstract void RecordEvent();
-    public void IsComplete() { }
+    public abstract void IsComplete();
 }
