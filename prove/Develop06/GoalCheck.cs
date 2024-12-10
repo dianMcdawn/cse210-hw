@@ -71,12 +71,14 @@ public class GoalCheck : Goal
             {
                 foreach (GoalEvent evento in _events)
                 {
-                    outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};;{_lesserPoints};{_goalToAchieve};{evento.GetDate()}");
+                    //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Goal to be achieved ; Event Date
+                    outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};{_goalToAchieve};{evento.GetDate()}");
                 }
             }
             else
             {
-                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};0;0;");
+                //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Goal to be achieved ; Event Date
+                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};{_goalToAchieve};");
             }
 
         }

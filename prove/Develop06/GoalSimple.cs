@@ -70,7 +70,8 @@ public class GoalSimple : Goal
     {
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-            outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};0;0;{_dateComplete}");
+            //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Goal to be achieved ; Event Date       
+            outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};0;{_dateComplete}");
         }
 
     }

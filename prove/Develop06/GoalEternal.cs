@@ -48,12 +48,14 @@ public class GoalEternal : Goal
             {
                 foreach (GoalEvent evento in _events)
                 {
-                    outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};0;0;{evento.GetDate()}");
+                    //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Goal to be achieved ; Event Date
+                    outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};0;{evento.GetDate()}");
                 }
             }
             else
             {
-                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};0;0;");
+                //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Goal to be achieved ; Event Date
+                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};0;");
             }
         }
 

@@ -249,5 +249,25 @@ public class MainMenu
         Console.WriteLine("Data has been saved.");
         Console.ReadLine();
     }
-    private void LoadGoals() { }
+    private void LoadGoals()
+    {
+        string fileName = "goals.txt";
+        string[] lines = System.IO.File.ReadAllLines(fileName);
+
+        foreach (string line in lines)
+        {
+            //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Goal to be achieved ; Event Date
+            string[] parts = line.Split(";");
+            string playerName = parts[0];
+            string goalName = parts[1];
+            string goalDesc = parts[2];
+            string dateStart = parts[3];
+            string dateUpdate = parts[4];
+            string pointsAll = parts[5];
+            string pointsOne = parts[6];
+            string diff = parts[7];
+            string goalToAchieve = parts[8];
+            string eventDate = parts[9];
+        }
+    }
 }
