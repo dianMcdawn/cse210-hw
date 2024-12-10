@@ -45,24 +45,22 @@ public class GoalEternal : Goal
         _dateUpdate = today;
     }
     public override void IsComplete() { }
-    public override void SaveToText(string fileName, string playerName)
+    public override string GetStringSave(string playerName)
     {
-        using (StreamWriter outputFile = new StreamWriter(fileName))
+        string data = "";
+        if (_events.Count() > 0)
         {
-            if (_events.Count() > 0)
-            {
-                foreach (GoalEvent evento in _events)
-                {
-                    //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
-                    outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};{_periodGoal};0;{evento.GetDate()}");
-                }
-            }
-            else
+            foreach (GoalEvent evento in _events)
             {
                 //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
-                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};{_periodGoal};0;");
+                data = data + " && " + $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};{_periodGoal};0;{evento.GetDate()}";
             }
         }
-
+        else
+        {
+            //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
+            data = $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};{_periodGoal};0;";
+        }
+        return data;
     }
 }

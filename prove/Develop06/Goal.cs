@@ -43,9 +43,9 @@ public abstract class Goal
     public abstract int GetScore();
     public abstract string GetRepresentation();
     public abstract string GetDetails();
+    public abstract string GetStringSave(string playerName);
 
     //Methods
     public abstract void RecordEvent();
     public abstract void IsComplete();
-    public abstract void SaveToText(string fileName, string playerName);
 }

@@ -242,9 +242,27 @@ public class MainMenu
     private void SaveGoals()
     {
         string fileName = "goals.txt";
-        foreach (Goal goal in _goals)
+
+        using (StreamWriter outputFile = new StreamWriter(fileName, append: true))
         {
-            goal.SaveToText(fileName, _playerName);
+            foreach (Goal goal in _goals)
+            {
+                //Retreiving each line to be saved
+                string stringLine = goal.GetStringSave(_playerName);
+                //Checking if there are more than one line in the same string
+                string[] parts = stringLine.Split("&&");
+                if (parts.Count() > 0)
+                {
+                    foreach (string line in parts)
+                    {
+                        outputFile.WriteLine(line);
+                    }
+                }
+                else
+                {
+                    outputFile.WriteLine(stringLine);
+                }
+            }
         }
         Console.WriteLine("Data has been saved.");
         Console.ReadLine();
@@ -253,7 +271,6 @@ public class MainMenu
     {
         string fileName = "goals.txt";
         string currentLine = "";
-        string currentEvent = "";
         string[] lines = System.IO.File.ReadAllLines(fileName);
 
         foreach (string line in lines)
@@ -322,7 +339,6 @@ public class MainMenu
                         //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; X ; Goal to be achieved ; Event Date       
                         GoalCheck goal = new GoalCheck(goalName, goalDesc, puntosAll, diff, goalToAchieve, puntos, false, dateStart, dateUpdate);
                         currentLine = goalName + goalDesc + puntosAll + diff + goalToAchieve + puntos + dateStart + dateUpdate;
-
 
                         //Saving it
                         _goals.Add(goal);

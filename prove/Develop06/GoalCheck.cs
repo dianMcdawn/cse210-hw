@@ -68,25 +68,22 @@ public class GoalCheck : Goal
         if (_events.Count() == _goalToAchieve) { _isComplete = true; }
         else { _isComplete = false; }
     }
-    public override void SaveToText(string fileName, string playerName)
+    public override string GetStringSave(string playerName)
     {
-        using (StreamWriter outputFile = new StreamWriter(fileName))
+        string data = "";
+        if (_events.Count() > 0)
         {
-            if (_events.Count() > 0)
+            foreach (GoalEvent evento in _events)
             {
-                foreach (GoalEvent evento in _events)
-                {
-                    //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
-                    outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};;{_goalToAchieve};{evento.GetDate()}");
-                }
+                //Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
+                data = data + " && " + $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};;{_goalToAchieve};{evento.GetDate()}";
             }
-            else
-            {
-                //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
-                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};;{_goalToAchieve};");
-            }
-
         }
-
+        else
+        {
+            // Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
+            data = $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};;{_goalToAchieve};";
+        }
+        return data;
     }
 }

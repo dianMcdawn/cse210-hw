@@ -71,13 +71,9 @@ public class GoalSimple : Goal
         if (_event != null) { _isComplete = true; }
         else { _isComplete = false; }
     }
-    public override void SaveToText(string fileName, string playerName)
+    public override string GetStringSave(string playerName)
     {
-        using (StreamWriter outputFile = new StreamWriter(fileName))
-        {
-            //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date       
-            outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};;0;{_dateComplete}");
-        }
-
+        //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date       
+        return $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};;0;{_dateComplete}";
     }
 }
