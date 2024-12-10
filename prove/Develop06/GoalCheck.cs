@@ -40,9 +40,9 @@ public class GoalCheck : Goal
         string details = GetRepresentation() + "\n";
         foreach (GoalEvent evento in _events)
         {
-            details = details + "\n" + evento.GetEventSummary();
+            details = details + "\nDetails:\n" + evento.GetEventSummary();
         }
-        return details;
+        return details+"\n";
     }
     public override int GetScore()
     {
@@ -76,7 +76,7 @@ public class GoalCheck : Goal
             foreach (GoalEvent evento in _events)
             {
                 //Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
-                data = data + " && " + $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};;{_goalToAchieve};{evento.GetDate()}";
+                data = data + "&&" + $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};;{_goalToAchieve};{evento.GetDate()}";
             }
         }
         else

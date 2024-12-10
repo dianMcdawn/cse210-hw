@@ -28,9 +28,9 @@ public class GoalEternal : Goal
         string details = GetRepresentation() + "\n";
         foreach (GoalEvent evento in _events)
         {
-            details = details + "\n" + evento.GetEventSummary();
+            details = details + "\nDetails:\n" + evento.GetEventSummary();
         }
-        return details;
+        return details + "\n";
     }
     public override int GetScore()
     {
@@ -53,7 +53,7 @@ public class GoalEternal : Goal
             foreach (GoalEvent evento in _events)
             {
                 //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
-                data = data + " && " + $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};{_periodGoal};0;{evento.GetDate()}";
+                data = data + "&&" + $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};{_periodGoal};0;{evento.GetDate()}";
             }
         }
         else
