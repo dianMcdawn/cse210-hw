@@ -234,10 +234,12 @@ public class MainMenu
     private void SaveGoals()
     {
         string fileName = "goals.txt";
-        /*foreach(Goal goal in _goals)
+        foreach (Goal goal in _goals)
         {
-            goal.SaveToText(fileName,_playerName);
-        }*/
+            goal.SaveToText(fileName, _playerName);
+        }
+        Console.WriteLine("Data has been saved.");
+        Console.ReadLine();
     }
     private void LoadGoals() { }
 

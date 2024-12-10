@@ -46,5 +46,5 @@ public abstract class Goal
     //Methods
     public abstract void RecordEvent();
     public abstract void IsComplete();
-    public abstract void SaveToText();
+    public abstract void SaveToText(string fileName, string playerName);
 }

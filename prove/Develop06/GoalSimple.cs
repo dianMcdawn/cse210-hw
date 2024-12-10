@@ -59,7 +59,7 @@ public class GoalSimple : Goal
     {
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-            outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{base.GetPoints()};0;{base.GetDifficulty()};0;;");
+            outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};0;0;{_dateComplete}");
         }
 
     }

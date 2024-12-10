@@ -7,6 +7,11 @@ public class GoalEvent
     {
         _date = date;
     }
+    //Getter
+    public DateOnly GetDate()
+    {
+        return _date;
+    }
     //Methods
     public string GetEventSummary()
     {
