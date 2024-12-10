@@ -1,18 +1,18 @@
 public class GoalEvent
 {
-    private DateOnly _date;
+    private DateTime _date;
 
     //********************************************
     //                CONSTRUCTORS
     //********************************************
-    public GoalEvent(DateOnly date)
+    public GoalEvent(DateTime date)
     {
         _date = date;
     }
     //***************************************
     //                GETTERS
     //***************************************
-    public DateOnly GetDate()
+    public DateTime GetDate()
     {
         return _date;
     }

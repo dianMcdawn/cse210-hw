@@ -1,14 +1,13 @@
 Patricio;1;not dying;that;10-12-2024;10-12-2024;10000;0;hard;;0;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;50;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;50;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;50;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;50;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;50;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;50;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;50;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;50;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;50;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;50;50;Easy;;10;10-12-2024
+Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
+Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
+Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
+Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
+Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
+Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
+Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
+Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
+Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
 Patricio;3;prayers;that;10-12-2024;10-12-2024;500;0;medium;daily;0;10-12-2024
 Patricio;3;prayers;that;10-12-2024;10-12-2024;500;0;medium;daily;0;10-12-2024
 Patricio;3;prayers;that;10-12-2024;10-12-2024;500;0;medium;daily;0;10-12-2024

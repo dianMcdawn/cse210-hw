@@ -158,7 +158,8 @@ public class MainMenu
     {
         //Some global variables
         int choise = 4;
-        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
+        DateTime todaytime = DateTime.Today;//Date and time
+        //DateOnly today = DateOnly.FromDateTime(DateTime.Now);//Only date
 
         //Main Menu
         do
@@ -196,7 +197,7 @@ public class MainMenu
                 Console.Write("Points: "); string points = Console.ReadLine(); int puntos = int.Parse(points);
                 Console.Write("Difficulty (Hard, Medium, Easy): "); string diff = Console.ReadLine();
                 //OneGoal goal = new OneGoal("Finish College", "Finish every class of this year.", 5000, "Hard", false, today);
-                GoalSimple goal = new GoalSimple(1, name, desc, puntos, diff, false, today, today);
+                GoalSimple goal = new GoalSimple(1, name, desc, puntos, diff, false, todaytime, todaytime);
                 _goals.Add(goal);
             }
             else if (choise == 2)
@@ -207,7 +208,7 @@ public class MainMenu
                 Console.Write("Points for achieved all: "); string pointsAll = Console.ReadLine(); int puntosAll = int.Parse(points);
                 Console.Write("Difficulty (Hard, Medium, Easy): "); string diff = Console.ReadLine();
                 Console.Write("How many to achieve (number): "); string goalTo = Console.ReadLine(); int goalToAchieve = int.Parse(goalTo);
-                GoalCheck goal = new GoalCheck(2, name, desc, puntosAll, diff, goalToAchieve, puntos, false, today, today);
+                GoalCheck goal = new GoalCheck(2, name, desc, puntosAll, diff, goalToAchieve, puntos, false, todaytime, todaytime);
                 _goals.Add(goal);
             }
             else if (choise == 3)
@@ -217,7 +218,7 @@ public class MainMenu
                 Console.Write("Points: "); string points = Console.ReadLine(); int puntos = int.Parse(points);
                 Console.Write("Difficulty (Hard, Medium, Easy): "); string diff = Console.ReadLine();
                 Console.Write("Period (Daily, Weekly, Monthly): "); string period = Console.ReadLine();
-                GoalEternal goal = new GoalEternal(3, name, desc, puntos, diff, period, false, today, today);
+                GoalEternal goal = new GoalEternal(3, name, desc, puntos, diff, period, false, todaytime, todaytime);
                 _goals.Add(goal);
             }
         } while (choise != 4);
@@ -256,39 +257,18 @@ public class MainMenu
                 //Index to identify the goal to edit
                 int index = choise - 1;
 
+                //Clearing screen
+                Console.Clear();
+
                 //If goal is not completed yet, let save a new event
-                string message = "";
                 if (_goals[index].IsComplete() == false)
                 {
                     _goals[index].RecordEvent();
-
-                    if (_goals[index].GetGoalType() == 1)
-                    {
-                        message = message + $"Your goal has been Completed!!! Congratulation, you won {_goals[index].GetPoints()} points";
-                    }
-                    else if (_goals[index].GetGoalType() == 2)
-                    {
-                        message = message + $"Your goal task has been recorded!!! Congratulation, you won {_goals[index].GetLessPoints()} points";
-                        //Let call IsComplete again, maybe the new added event completed the goal
-                        if (_goals[index].IsComplete() == true)
-                        {
-                            message = message + $"Your goal has been Completed!!! Congratulation, you won {_goals[index].GetPoints()} extra points";
-                        }
-                    }
-                    else if (_goals[index].GetGoalType() == 3)
-                    {
-                        message = message + $"Your goal task has been recorded!!! Congratulation, you won {_goals[index].GetPoints()} points";
-                    }
                 }
                 else
                 {
-                    message = "This event can't be recorded, you already completed this goal!.";
+                    Console.WriteLine("This event can't be recorded, you already completed this goal!.");
                 }
-
-                //Clearing screen
-                Console.Clear();
-                Console.WriteLine(message);
-
                 Console.ReadLine();
             }
         } while (choise != last);
@@ -347,9 +327,11 @@ public class MainMenu
             string goalName = parts[2];
             string goalDesc = parts[3];
             string dateSrt = parts[4];
-            DateOnly dateStart = DateOnly.Parse(dateSrt);
+            //DateOnly dateStart = DateOnly.Parse(dateSrt);
+            DateTime dateStart = DateTime.Parse(dateSrt);
             string dateUpdt = parts[5];
-            DateOnly dateUpdate = DateOnly.Parse(dateUpdt);
+            //DateOnly dateUpdate = DateOnly.Parse(dateUpdt);
+            DateTime dateUpdate = DateTime.Parse(dateUpdt);
             string pointsAll = parts[6];
             int puntosAll = int.Parse(pointsAll);
             string pointsOne = parts[7];
@@ -359,7 +341,8 @@ public class MainMenu
             string goalAchieve = parts[10];
             int goalToAchieve = int.Parse(goalAchieve);
             string eventDt = parts[11];
-            DateOnly eventDate = DateOnly.Parse(eventDt);
+            //DateOnly eventDate = DateOnly.Parse(eventDt);
+            DateTime eventDate = DateTime.Parse(eventDt);
 
             //Creating main
             if (playerName == _playerName)

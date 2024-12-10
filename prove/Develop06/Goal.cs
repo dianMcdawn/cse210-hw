@@ -48,7 +48,6 @@ public abstract class Goal
     {
         return _points;
     }
-    public abstract int GetLessPoints();
     public int GetGoalType()
     {
         return _goalType;

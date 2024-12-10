@@ -4,14 +4,14 @@ public class GoalCheck : Goal
     private int _amountCompleted;
     private int _goalToAchieve;
     private int _lesserPoints;
-    private DateOnly _dateStart;
-    private DateOnly _dateComplete;
+    private DateTime _dateStart;
+    private DateTime _dateComplete;
     private List<GoalEvent> _events = new List<GoalEvent>();
 
     //********************************************
     //                CONSTRUCTORS
     //********************************************
-    public GoalCheck(int goalType, string name, string description, int point, string difficulty, int goalToAchieve, int lesserPoints, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(goalType, name, description, point, difficulty)
+    public GoalCheck(int goalType, string name, string description, int point, string difficulty, int goalToAchieve, int lesserPoints, bool isComplete, DateTime dateStart, DateTime dateUpdate) : base(goalType, name, description, point, difficulty)
     {
         _isComplete = isComplete;
         _goalToAchieve = goalToAchieve;
@@ -35,7 +35,7 @@ public class GoalCheck : Goal
         string typeGoal = "Check Goal";
         if (_isComplete == false)
         {
-            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_events.Count()}/{_amountCompleted} |  Status: Not Completed | Last Updated: {_dateComplete} | Points : {GetScore()}";
+            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_amountCompleted}/{_goalToAchieve} | Status: Not Completed | Last Updated: {_dateComplete} | Points : {GetScore()}";
         }
         else
         {
@@ -52,10 +52,6 @@ public class GoalCheck : Goal
         }
         if (_isComplete == true) { details = details + $"\nHaving completed this goal you won an extra {base.GetPoints()} points"; }
         return details + "\n";
-    }
-    public override int GetLessPoints()
-    {
-        return _lesserPoints;
     }
     public override int GetScore()
     {
@@ -74,10 +70,17 @@ public class GoalCheck : Goal
     //***************************************
     public override void RecordEvent()
     {
-        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-        GoalEvent evento = new GoalEvent(today);
+        DateTime todaytime = DateTime.Today;//Date and time
+        //DateOnly today = DateOnly.FromDateTime(DateTime.Now);//Only date
+        GoalEvent evento = new GoalEvent(todaytime);
         _events.Add(evento);
-        _dateComplete = today;
+        _dateComplete = todaytime;
+        IsComplete();
+        Console.WriteLine($"Your goal has been Completed!!! Congratulation, you won {_lesserPoints} points");
+        if (_isComplete == true)
+        {
+            Console.WriteLine($"\nYour goal has been Completed!!! Congratulation, you won {base.GetPoints()} extra points");
+        }
     }
     public override bool IsComplete()
     {

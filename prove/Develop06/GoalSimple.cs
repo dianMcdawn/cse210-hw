@@ -3,14 +3,14 @@ using System.Runtime.CompilerServices;
 public class GoalSimple : Goal
 {
     private bool _isComplete;
-    private DateOnly _dateStart;
-    private DateOnly _dateComplete;
+    private DateTime _dateStart;
+    private DateTime _dateComplete;
     private GoalEvent _event;
 
     //********************************************
     //                CONSTRUCTORS
     //********************************************
-    public GoalSimple(int goalType, string name, string description, int point, string difficulty, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(goalType, name, description, point, difficulty)
+    public GoalSimple(int goalType, string name, string description, int point, string difficulty, bool isComplete, DateTime dateStart, DateTime dateUpdate) : base(goalType, name, description, point, difficulty)
     {
         _isComplete = isComplete;
         _dateStart = dateStart;
@@ -65,16 +65,18 @@ public class GoalSimple : Goal
             return base.GetPoints();
         }
     }
-    public override int GetLessPoints() { return 0; }
+    
 
     //***************************************
     //                METHODS
     //***************************************
     public override void RecordEvent()
     {
-        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-        _event = new GoalEvent(today);
-        _dateComplete = today;
+        DateTime todaytime = DateTime.Today;//Date and time
+        //DateOnly today = DateOnly.FromDateTime(DateTime.Now);//Only date
+        _event = new GoalEvent(todaytime);
+        _dateComplete = todaytime;
+        Console.WriteLine($"Your goal has been Completed!!! Congratulation, you won {base.GetPoints()} points");
     }
     public override bool IsComplete()
     {

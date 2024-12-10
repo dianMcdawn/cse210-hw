@@ -1,14 +1,14 @@
 public class GoalEternal : Goal
 {
     private string _periodGoal;
-    private DateOnly _dateStart;
-    private DateOnly _dateUpdate;
+    private DateTime _dateStart;
+    private DateTime _dateUpdate;
     private List<GoalEvent> _events = new List<GoalEvent>();
 
     //********************************************
     //                CONSTRUCTORS
     //********************************************
-    public GoalEternal(int goalType, string name, string description, int point, string difficulty, string periodGoal, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(goalType, name, description, point, difficulty)
+    public GoalEternal(int goalType, string name, string description, int point, string difficulty, string periodGoal, bool isComplete, DateTime dateStart, DateTime dateUpdate) : base(goalType, name, description, point, difficulty)
     {
         _periodGoal = periodGoal;
         _dateStart = dateStart;
@@ -43,16 +43,17 @@ public class GoalEternal : Goal
         IsComplete();
         return base.GetPoints() * _events.Count();
     }
-    public override int GetLessPoints() { return 0; }
     //***************************************
     //                METHODS
     //***************************************
     public override void RecordEvent()
     {
-        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-        GoalEvent evento = new GoalEvent(today);
+        DateTime todaytime = DateTime.Today;//Date and time
+        //DateOnly today = DateOnly.FromDateTime(DateTime.Now);//Only date
+        GoalEvent evento = new GoalEvent(todaytime);
         _events.Add(evento);
-        _dateUpdate = today;
+        _dateUpdate = todaytime;
+        Console.WriteLine($"Your goal task has been recorded!!! Congratulation, you won {GetPoints()} points");
     }
     public override bool IsComplete() { return false; }
     public override string GetStringSave(string playerName)
