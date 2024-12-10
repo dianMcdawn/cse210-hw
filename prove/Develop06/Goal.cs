@@ -10,6 +10,7 @@ public abstract class Goal
     {
         _name = "";
         _description = "";
+        _points = 0;
         _difficulty = "";
     }
     public Goal(string name, string description, int point, string difficulty)
