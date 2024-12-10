@@ -30,7 +30,15 @@ public class GoalSimple : Goal
     }
     public override string GetDetails()
     {
-        string details = GetRepresentation() + "\n" + _event.GetEventSummary();
+        string details = "";
+        if (_event != null)
+        {
+            details = GetRepresentation() + "\n" + _event.GetEventSummary();
+        }
+        else
+        {
+            details = GetRepresentation();
+        }
         return details;
     }
     //Getters

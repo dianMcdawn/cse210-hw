@@ -29,7 +29,7 @@ public class MainMenu
     public void Start()
     {
         //Some global variables
-        int choise = 9;
+        int choise = 8;
 
         //Main Menu
         do
@@ -48,15 +48,14 @@ public class MainMenu
             Console.WriteLine("2. List your goals");
             Console.WriteLine("3. Show descriptions of your goals");
             Console.WriteLine("4. Create new goal");
-            Console.WriteLine("5. Edit a goal");
-            Console.WriteLine("6. Record a event");
-            Console.WriteLine("7. Save goals");
-            Console.WriteLine("8. Load goals");
-            Console.WriteLine("9. Quit");
+            Console.WriteLine("5. Record a event");
+            Console.WriteLine("6. Save goals");
+            Console.WriteLine("7. Load goals");
+            Console.WriteLine("8. Quit");
             Console.Write("What would you like to do? (Number) ");
             string opt = Console.ReadLine();
-            if (opt != "1" && opt != "2" && opt != "3" && opt != "4" && opt != "5" && opt != "6" && opt != "7" && opt != "8")
-            { choise = 9; }
+            if (opt != "1" && opt != "2" && opt != "3" && opt != "4" && opt != "5" && opt != "6" && opt != "7")
+            { choise = 8; }
             else { choise = int.Parse(opt); }
 
             //Working every option
@@ -78,22 +77,18 @@ public class MainMenu
             }
             else if (choise == 5)
             {
-                choise = 9;
+                RecordEvent();
             }
             else if (choise == 6)
             {
-                RecordEvent();
-            }
-            else if (choise == 7)
-            {
                 SaveGoals();
             }
-            else if (choise == 8)
+            else if (choise == 7)
             {
                 LoadGoals();
             }
 
-        } while (choise != 9);
+        } while (choise != 8);
     }
     private void DisplayPlayerInfo()
     {
@@ -235,7 +230,8 @@ public class MainMenu
             //If the option is nor to return previous screen
             if (choise != last)
             {
-                _goals[choise].RecordEvent();
+                int index = choise - 1;
+                _goals[index].RecordEvent();
                 //Clearing screen
                 Console.Clear();
                 Console.WriteLine("Event recorded.");
