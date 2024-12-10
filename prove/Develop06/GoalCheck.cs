@@ -8,7 +8,7 @@ public class GoalCheck : Goal
     private List<GoalEvent> _events = new List<GoalEvent>();
 
     //constructor
-    public GoalCheck(string name, string description, int point, string difficulty, int goalToAchieve, int lesserPoints, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(name, description, point, difficulty)
+    public GoalCheck(int goalType, string name, string description, int point, string difficulty, int goalToAchieve, int lesserPoints, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(goalType, name, description, point, difficulty)
     {
         _isComplete = isComplete;
         _goalToAchieve = goalToAchieve;
@@ -40,7 +40,7 @@ public class GoalCheck : Goal
         string details = GetRepresentation() + "\n";
         foreach (GoalEvent evento in _events)
         {
-            details = details + "\nDetails:\n" + evento.GetEventSummary();
+            details = details + "Details:\n" + evento.GetEventSummary();
         }
         return details+"\n";
     }
@@ -76,13 +76,13 @@ public class GoalCheck : Goal
             foreach (GoalEvent evento in _events)
             {
                 //Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
-                data = data + "&&" + $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};;{_goalToAchieve};{evento.GetDate()}";
+                data = data + "&&" + $"{playerName};{base.GetGoalType()};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};;{_goalToAchieve};{evento.GetDate()}";
             }
         }
         else
         {
             // Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
-            data = $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};;{_goalToAchieve};";
+            data = $"{playerName};{base.GetGoalType()};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};{_lesserPoints};{base.GetDifficulty()};;{_goalToAchieve};";
         }
         return data;
     }

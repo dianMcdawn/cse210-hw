@@ -8,7 +8,7 @@ public class GoalSimple : Goal
     private GoalEvent _event;
 
     //constructor
-    public GoalSimple(string name, string description, int point, string difficulty, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(name, description, point, difficulty)
+    public GoalSimple(int goalType, string name, string description, int point, string difficulty, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(goalType, name, description, point, difficulty)
     {
         _isComplete = isComplete;
         _dateStart = dateStart;
@@ -38,7 +38,7 @@ public class GoalSimple : Goal
         string details = "";
         if (_event != null)
         {
-            details = GetRepresentation() + "\nDetails:\n" + _event.GetEventSummary();
+            details = GetRepresentation() + "Details:\n" + _event.GetEventSummary();
         }
         else
         {
@@ -74,6 +74,6 @@ public class GoalSimple : Goal
     public override string GetStringSave(string playerName)
     {
         //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date       
-        return $"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};;0;{_dateComplete}";
+        return $"{playerName};{base.GetGoalType()};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};;0;{_dateComplete}";
     }
 }

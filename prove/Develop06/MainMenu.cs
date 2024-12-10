@@ -173,7 +173,7 @@ public class MainMenu
                 Console.Write("Points: "); string points = Console.ReadLine(); int puntos = int.Parse(points);
                 Console.Write("Difficulty (Hard, Medium, Easy): "); string diff = Console.ReadLine();
                 //OneGoal goal = new OneGoal("Finish College", "Finish every class of this year.", 5000, "Hard", false, today);
-                GoalSimple goal = new GoalSimple(name, desc, puntos, diff, false, today, today);
+                GoalSimple goal = new GoalSimple(1, name, desc, puntos, diff, false, today, today);
                 _goals.Add(goal);
             }
             else if (choise == 2)
@@ -184,7 +184,7 @@ public class MainMenu
                 Console.Write("Points for achieved all: "); string pointsAll = Console.ReadLine(); int puntosAll = int.Parse(points);
                 Console.Write("Difficulty (Hard, Medium, Easy): "); string diff = Console.ReadLine();
                 Console.Write("How many to achieve (number): "); string goalTo = Console.ReadLine(); int goalToAchieve = int.Parse(goalTo);
-                GoalCheck goal = new GoalCheck(name, desc, puntosAll, diff, goalToAchieve, puntos, false, today, today);
+                GoalCheck goal = new GoalCheck(2, name, desc, puntosAll, diff, goalToAchieve, puntos, false, today, today);
                 _goals.Add(goal);
             }
             else if (choise == 3)
@@ -194,7 +194,7 @@ public class MainMenu
                 Console.Write("Points: "); string points = Console.ReadLine(); int puntos = int.Parse(points);
                 Console.Write("Difficulty (Hard, Medium, Easy): "); string diff = Console.ReadLine();
                 Console.Write("Period (Daily, Weekly, Monthly): "); string period = Console.ReadLine();
-                GoalEternal goal = new GoalEternal(name, desc, puntos, diff, period, false, today, today);
+                GoalEternal goal = new GoalEternal(3, name, desc, puntos, diff, period, false, today, today);
                 _goals.Add(goal);
             }
         } while (choise != 4);
@@ -278,34 +278,36 @@ public class MainMenu
             //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
             string[] parts = line.Split(";");
             string playerName = parts[0];
-            string goalName = parts[1];
-            string goalDesc = parts[2];
-            string dateSrt = parts[3];
+            string goalTp = parts[1];
+            int goalType = int.Parse(goalTp);
+            string goalName = parts[2];
+            string goalDesc = parts[3];
+            string dateSrt = parts[4];
             DateOnly dateStart = DateOnly.Parse(dateSrt);
-            string dateUpdt = parts[4];
+            string dateUpdt = parts[5];
             DateOnly dateUpdate = DateOnly.Parse(dateUpdt);
-            string pointsAll = parts[5];
+            string pointsAll = parts[6];
             int puntosAll = int.Parse(pointsAll);
-            string pointsOne = parts[6];
+            string pointsOne = parts[7];
             int puntos = int.Parse(pointsOne);
-            string diff = parts[7];
-            string period = parts[8];
-            string goalAchieve = parts[9];
+            string diff = parts[8];
+            string period = parts[9];
+            string goalAchieve = parts[10];
             int goalToAchieve = int.Parse(goalAchieve);
-            string eventDt = parts[10];
+            string eventDt = parts[11];
             DateOnly eventDate = DateOnly.Parse(eventDt);
 
             //Creating main
             if (playerName == _playerName)
             {
                 //If it is a Eternal Goal
-                if (period != null)
+                if (goalType == 3)
                 {
                     //Let check if the line is about the same Goal, but a different event
                     if (currentLine != goalName + goalDesc + puntosAll + diff + period + dateStart + dateUpdate)
                     {
                         //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; X ; Difficulty ; Period ; X ; Event Date       
-                        GoalEternal goal = new GoalEternal(goalName, goalDesc, puntosAll, diff, period, false, dateStart, dateUpdate);
+                        GoalEternal goal = new GoalEternal(3, goalName, goalDesc, puntosAll, diff, period, false, dateStart, dateUpdate);
                         currentLine = goalName + goalDesc + puntosAll + diff + period + dateStart + dateUpdate;
 
                         //Saving it
@@ -331,13 +333,13 @@ public class MainMenu
                     }
                 }
                 //If it is a Check Goal
-                else if (pointsOne != null)
+                else if (goalType == 2)
                 {
                     //Let check if the line is about the same Goal, but a different event
                     if (currentLine != goalName + goalDesc + puntosAll + diff + goalToAchieve + puntos + dateStart + dateUpdate)
                     {
                         //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; X ; Goal to be achieved ; Event Date       
-                        GoalCheck goal = new GoalCheck(goalName, goalDesc, puntosAll, diff, goalToAchieve, puntos, false, dateStart, dateUpdate);
+                        GoalCheck goal = new GoalCheck(2, goalName, goalDesc, puntosAll, diff, goalToAchieve, puntos, false, dateStart, dateUpdate);
                         currentLine = goalName + goalDesc + puntosAll + diff + goalToAchieve + puntos + dateStart + dateUpdate;
 
                         //Saving it
@@ -363,12 +365,12 @@ public class MainMenu
                     }
                 }
                 //If it is a Simple Goal
-                else
+                else if (goalType == 1)
                 {//Let check if the line is about the same Goal, but a different event
                     if (currentLine != goalName + goalDesc + puntosAll + diff + dateStart + dateUpdate)
                     {
                         //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; X ; Difficulty ; X ; X ; Event Date       
-                        GoalSimple goal = new GoalSimple(goalName, goalDesc, puntosAll, diff, false, dateStart, dateUpdate);
+                        GoalSimple goal = new GoalSimple(1, goalName, goalDesc, puntosAll, diff, false, dateStart, dateUpdate);
                         currentLine = goalName + goalDesc + puntosAll + diff + dateStart + dateUpdate;
 
                         //Saving it

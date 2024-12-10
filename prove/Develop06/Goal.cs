@@ -4,6 +4,7 @@ public abstract class Goal
     private string _description;
     private int _points;
     private string _difficulty;
+    private int _goalType;
 
     //Constructor
     public Goal()
@@ -13,12 +14,13 @@ public abstract class Goal
         _points = 0;
         _difficulty = "";
     }
-    public Goal(string name, string description, int point, string difficulty)
+    public Goal(int goalType, string name, string description, int point, string difficulty)
     {
         _name = name;
         _description = description;
         _points = point;
         _difficulty = difficulty;
+        _goalType = goalType;
     }
     //Setters
     public abstract void SetNewGoalEvent(GoalEvent evento);
@@ -39,6 +41,10 @@ public abstract class Goal
     public int GetPoints()
     {
         return _points;
+    }
+    public int GetGoalType()
+    {
+        return _goalType;
     }
     public abstract int GetScore();
     public abstract string GetRepresentation();
