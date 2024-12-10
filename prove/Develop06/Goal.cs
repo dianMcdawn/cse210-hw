@@ -28,15 +28,16 @@ public abstract class Goal
     {
         return _name;
     }
-    public string GetDetails()
+    /*public string GetDetails()
     {
         return _description;
-    }
+    }*/
     public int GetPoints()
     {
         return _points;
     }
     public abstract string GetRepresentation();
+    public abstract string GetDetails();
 
     //Methods
     public abstract void RecordEvent();

@@ -29,6 +29,15 @@ public class GoalCheck : Goal
             return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Status: Completed on {_dateComplete} | Points : {GetScore()}";
         }
     }
+    public override string GetDetails()
+    {
+        string details = GetRepresentation() + "\n";
+        foreach (GoalEvent evento in _events)
+        {
+            details = details + "\n" + evento.GetEventSummary();
+        }
+        return details;
+    }
     private int GetScore()
     {
         if (_isComplete == false)

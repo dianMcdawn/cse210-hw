@@ -7,4 +7,9 @@ public class GoalEvent
     {
         _date = date;
     }
+    //Methods
+    public string GetEventSummary()
+    {
+        return $"On {_date} was added this mark event";
+    }
 }

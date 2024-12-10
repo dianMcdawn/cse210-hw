@@ -25,7 +25,11 @@ public class GoalSimple : Goal
             return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Status: Completed on {_dateComplete} | Points : {GetScore()}";
         }
     }
-
+    public override string GetDetails()
+    {
+        string details = GetRepresentation() + "\n" + _event.GetEventSummary();
+        return details;
+    }
     //Getters
     private int GetScore()
     {
