@@ -95,6 +95,17 @@ public class MainMenu
 
         } while (choise != 8);
     }
+    public void CountDown(int start)
+    {
+        Console.Write($"Returning in: {start}");
+        do
+        {
+            Thread.Sleep(1000);
+            start--;
+            Console.Write("\b \b");
+            Console.Write(start);
+        } while (start > 0);
+    }
     private void DisplayPlayerInfo()
     {
         //Clearing screen
@@ -285,6 +296,9 @@ public class MainMenu
     }
     private void SaveGoals()
     {
+        //Clearing screen
+        Console.Clear();
+
         string fileName = "goals.txt";
 
         using (StreamWriter outputFile = new StreamWriter(fileName)) //, append: true
@@ -313,10 +327,13 @@ public class MainMenu
             }
         }
         Console.WriteLine("Data has been saved.");
-        Console.ReadLine();
+        CountDown(3);
     }
     private void LoadGoals()
     {
+        //Clearing screen
+        Console.Clear();
+
         string fileName = "goals.txt";
         string currentLine = "";
         string[] lines = System.IO.File.ReadAllLines(fileName);
@@ -435,6 +452,6 @@ public class MainMenu
             }
         }
         Console.WriteLine("Data has been loaded.");
-        Console.ReadLine();
+        CountDown(3);
     }
 }

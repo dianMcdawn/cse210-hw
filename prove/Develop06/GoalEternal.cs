@@ -34,12 +34,13 @@ public class GoalEternal : Goal
         string details = GetRepresentation() + "\nDetails:";
         foreach (GoalEvent evento in _events)
         {
-            details = details + "\n" + evento.GetEventSummary();
+            details = details + "\n" + evento.GetEventSummary() + $" where you won {base.GetPoints()} points";
         }
         return details + "\n";
     }
     public override int GetScore()
     {
+        IsComplete();
         return base.GetPoints() * _events.Count();
     }
     public override int GetLessPoints() { return 0; }

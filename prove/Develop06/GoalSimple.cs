@@ -41,10 +41,11 @@ public class GoalSimple : Goal
     }
     public override string GetDetails()
     {
+
         string details = "";
         if (_event != null)
         {
-            details = GetRepresentation() + "\nDetails:\n" + _event.GetEventSummary();
+            details = GetRepresentation() + "\nDetails:\n" + _event.GetEventSummary() + $" \nHaving completed this goal you won {base.GetPoints()} points";
         }
         else
         {
@@ -54,6 +55,7 @@ public class GoalSimple : Goal
     }
     public override int GetScore()
     {
+        IsComplete();
         if (_isComplete == false)
         {
             return 0;
@@ -63,7 +65,7 @@ public class GoalSimple : Goal
             return base.GetPoints();
         }
     }
-    public override int GetLessPoints(){return 0;}
+    public override int GetLessPoints() { return 0; }
 
     //***************************************
     //                METHODS

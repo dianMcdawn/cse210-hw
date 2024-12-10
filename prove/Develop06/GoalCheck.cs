@@ -44,11 +44,13 @@ public class GoalCheck : Goal
     }
     public override string GetDetails()
     {
+        IsComplete();
         string details = GetRepresentation() + "\nDetails:";
         foreach (GoalEvent evento in _events)
         {
-            details = details + "\n" + evento.GetEventSummary();
+            details = details + "\n" + evento.GetEventSummary() + $" where you won {_lesserPoints} points";
         }
+        if (_isComplete == true) { details = details + $"\nHaving completed this goal you won an extra {base.GetPoints()} points"; }
         return details + "\n";
     }
     public override int GetLessPoints()
@@ -57,6 +59,7 @@ public class GoalCheck : Goal
     }
     public override int GetScore()
     {
+        IsComplete();
         if (_isComplete == false)
         {
             return _events.Count() * _lesserPoints;
