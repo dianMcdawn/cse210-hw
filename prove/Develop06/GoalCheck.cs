@@ -37,10 +37,10 @@ public class GoalCheck : Goal
     }
     public override string GetDetails()
     {
-        string details = GetRepresentation() + "\n";
+        string details = GetRepresentation() + "\nDetails:";
         foreach (GoalEvent evento in _events)
         {
-            details = details + "Details:\n" + evento.GetEventSummary();
+            details = details + "\n" + evento.GetEventSummary();
         }
         return details+"\n";
     }

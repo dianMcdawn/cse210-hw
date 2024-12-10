@@ -94,7 +94,14 @@ public class MainMenu
     {
         //Clearing screen
         Console.Clear();
-        Console.WriteLine(_playerName);
+
+        //Refreshing total Score
+        SetScore();
+
+        //Writing data
+        Console.WriteLine($"Player name: {_playerName}");
+        Console.WriteLine($"Total Goals: {_goals.Count()}");
+        Console.WriteLine($"Total Score: {_score}");
         Console.ReadLine();
     }
     private void ListGoalNames()
@@ -243,7 +250,7 @@ public class MainMenu
     {
         string fileName = "goals.txt";
 
-        using (StreamWriter outputFile = new StreamWriter(fileName, append: true))
+        using (StreamWriter outputFile = new StreamWriter(fileName)) //, append: true
         {
             foreach (Goal goal in _goals)
             {
@@ -255,7 +262,11 @@ public class MainMenu
                 {
                     foreach (string line in parts)
                     {
-                        outputFile.WriteLine(line);
+                        //If a line is empty, it will not be saved
+                        if (line != "" && line != null)
+                        {
+                            outputFile.WriteLine(line);
+                        }
                     }
                 }
                 else
@@ -386,5 +397,7 @@ public class MainMenu
                 }
             }
         }
+        Console.WriteLine("Data has been loaded.");
+        Console.ReadLine();
     }
 }

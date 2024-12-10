@@ -38,13 +38,13 @@ public class GoalSimple : Goal
         string details = "";
         if (_event != null)
         {
-            details = GetRepresentation() + "Details:\n" + _event.GetEventSummary();
+            details = GetRepresentation() + "\nDetails:\n" + _event.GetEventSummary();
         }
         else
         {
             details = GetRepresentation();
         }
-        return details+"\n";
+        return details + "\n";
     }
     //Getters
     public override int GetScore()
