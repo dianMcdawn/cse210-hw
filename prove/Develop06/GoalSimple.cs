@@ -65,14 +65,14 @@ public class GoalSimple : Goal
             return base.GetPoints();
         }
     }
-    
+
 
     //***************************************
     //                METHODS
     //***************************************
     public override void RecordEvent()
     {
-        DateTime todaytime = DateTime.Today;//Date and time
+        DateTime todaytime = DateTime.Now;//Date and time
         //DateOnly today = DateOnly.FromDateTime(DateTime.Now);//Only date
         _event = new GoalEvent(todaytime);
         _dateComplete = todaytime;
@@ -86,7 +86,14 @@ public class GoalSimple : Goal
     }
     public override string GetStringSave(string playerName)
     {
-        //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date       
-        return $"{playerName};{base.GetGoalType()};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};;0;{_dateComplete}";
+        if (_event != null)
+        {
+            //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date       
+            return $"{playerName};{base.GetGoalType()};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};;0;{_dateComplete}";
+        }
+        else
+        {
+            return $"{playerName};{base.GetGoalType()};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};;0;";
+        }
     }
 }

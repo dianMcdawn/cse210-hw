@@ -158,7 +158,7 @@ public class MainMenu
     {
         //Some global variables
         int choise = 4;
-        DateTime todaytime = DateTime.Today;//Date and time
+        DateTime todaytime = DateTime.Now;//Date and time
         //DateOnly today = DateOnly.FromDateTime(DateTime.Now);//Only date
 
         //Main Menu
@@ -342,7 +342,6 @@ public class MainMenu
             int goalToAchieve = int.Parse(goalAchieve);
             string eventDt = parts[11];
             //DateOnly eventDate = DateOnly.Parse(eventDt);
-            DateTime eventDate = DateTime.Parse(eventDt);
 
             //Creating main
             if (playerName == _playerName)
@@ -361,8 +360,9 @@ public class MainMenu
                         _goals.Add(goal);
 
                         //If this line have an event date, let create it
-                        if (eventDt != null)
+                        if (eventDt != null && eventDt != "")
                         {
+                            DateTime eventDate = DateTime.Parse(eventDt);
                             GoalEvent evento = new GoalEvent(eventDate);
                             goal.SetNewGoalEvent(evento);
                         }
@@ -370,9 +370,10 @@ public class MainMenu
                     else
                     {
                         //If this line have an event date, let create it
-                        if (eventDt != null)
+                        if (eventDt != null && eventDt != "")
                         {
                             //Take the last index, as the last one of the list is the last one we saved before
+                            DateTime eventDate = DateTime.Parse(eventDt);
                             int index = _goals.Count() - 1;
                             GoalEvent evento = new GoalEvent(eventDate);
                             _goals[index].SetNewGoalEvent(evento);
@@ -393,8 +394,9 @@ public class MainMenu
                         _goals.Add(goal);
 
                         //If this line have an event date, let create it
-                        if (eventDt != null)
+                        if (eventDt != null && eventDt != "")
                         {
+                            DateTime eventDate = DateTime.Parse(eventDt);
                             GoalEvent evento = new GoalEvent(eventDate);
                             goal.SetNewGoalEvent(evento);
                         }
@@ -402,9 +404,10 @@ public class MainMenu
                     else
                     {
                         //If this line have an event date, let create it
-                        if (eventDt != null)
+                        if (eventDt != null && eventDt != "")
                         {
                             //Take the last index, as the last one of the list is the last one we saved before
+                            DateTime eventDate = DateTime.Parse(eventDt);
                             int index = _goals.Count() - 1;
                             GoalEvent evento = new GoalEvent(eventDate);
                             _goals[index].SetNewGoalEvent(evento);
@@ -424,8 +427,9 @@ public class MainMenu
                         _goals.Add(goal);
 
                         //If this line have an event date, let create it
-                        if (eventDt != null)
+                        if (eventDt != null && eventDt != "")
                         {
+                            DateTime eventDate = DateTime.Parse(eventDt);
                             GoalEvent evento = new GoalEvent(eventDate);
                             goal.SetNewGoalEvent(evento);
                         }

@@ -70,7 +70,7 @@ public class GoalCheck : Goal
     //***************************************
     public override void RecordEvent()
     {
-        DateTime todaytime = DateTime.Today;//Date and time
+        DateTime todaytime = DateTime.Now;//Date and time
         //DateOnly today = DateOnly.FromDateTime(DateTime.Now);//Only date
         GoalEvent evento = new GoalEvent(todaytime);
         _events.Add(evento);

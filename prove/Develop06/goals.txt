@@ -1,13 +1,1 @@
-Patricio;1;not dying;that;10-12-2024;10-12-2024;10000;0;hard;;0;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
-Patricio;2;study;that;10-12-2024;10-12-2024;500;50;Easy;;10;10-12-2024
-Patricio;3;prayers;that;10-12-2024;10-12-2024;500;0;medium;daily;0;10-12-2024
-Patricio;3;prayers;that;10-12-2024;10-12-2024;500;0;medium;daily;0;10-12-2024
-Patricio;3;prayers;that;10-12-2024;10-12-2024;500;0;medium;daily;0;10-12-2024
+Patricio;1;Not dying;That;10-12-2024 17:04:30;10-12-2024 17:10:29;15600;0;Hard;;0;10-12-2024 17:10:29
