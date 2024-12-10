@@ -14,7 +14,11 @@ public class GoalEternal : Goal
     public override string GetRepresentation()
     {
         string typeGoal = "Eternal Goal";
-        return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_events.Count()}";
+        return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_events.Count()} | Points : {GetScore()}";
+    }
+    private int GetScore()
+    {
+        return base.GetPoints() * _events.Count();
     }
     //Methods
     public override void RecordEvent()

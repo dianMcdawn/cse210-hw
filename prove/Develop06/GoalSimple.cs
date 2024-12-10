@@ -18,11 +18,24 @@ public class GoalSimple : Goal
         string typeGoal = "Simple Goal";
         if (_isComplete == false)
         {
-            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | State: Not Completed";
+            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Status: Not Completed | Points : {GetScore()}";
         }
         else
         {
-            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | State: Completed on {_dateComplete}";
+            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Status: Completed on {_dateComplete} | Points : {GetScore()}";
+        }
+    }
+
+    //Getters
+    private int GetScore()
+    {
+        if (_isComplete == false)
+        {
+            return 0;
+        }
+        else
+        {
+            return base.GetPoints();
         }
     }
 

@@ -2,7 +2,6 @@ public abstract class Goal
 {
     private string _name;
     private string _description;
-    private int _isAchieved;
     private int _points;
     private int _totalPoints;
     private string _difficulty;
@@ -12,7 +11,6 @@ public abstract class Goal
     {
         _name = "";
         _description = "";
-        _isAchieved = 0;
         _totalPoints = 0;
         _difficulty = "";
     }
@@ -20,7 +18,6 @@ public abstract class Goal
     {
         _name = name;
         _description = description;
-        _isAchieved = 0;
         _points = point;
         _totalPoints = 0;
         _difficulty = difficulty;
@@ -34,6 +31,10 @@ public abstract class Goal
     public string GetDetails()
     {
         return _description;
+    }
+    public int GetPoints()
+    {
+        return _points;
     }
     public abstract string GetRepresentation();
 

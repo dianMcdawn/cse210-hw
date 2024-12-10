@@ -22,11 +22,22 @@ public class GoalCheck : Goal
         string typeGoal = "Check Goal";
         if (_isComplete == false)
         {
-            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_events.Count()} |  State: Not Completed | Last Updated: {_dateComplete}";
+            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_events.Count()} |  Status: Not Completed | Last Updated: {_dateComplete} | Points : {GetScore()}";
         }
         else
         {
-            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | State: Completed on {_dateComplete}";
+            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Status: Completed on {_dateComplete} | Points : {GetScore()}";
+        }
+    }
+    private int GetScore()
+    {
+        if (_isComplete == false)
+        {
+            return _events.Count() * _lesserPoints;
+        }
+        else
+        {
+            return base.GetPoints() + (_events.Count() * _lesserPoints);
         }
     }
     //Methods
