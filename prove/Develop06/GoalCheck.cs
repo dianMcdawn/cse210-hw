@@ -35,7 +35,7 @@ public class GoalCheck : Goal
         string typeGoal = "Check Goal";
         if (_isComplete == false)
         {
-            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_events.Count()} |  Status: Not Completed | Last Updated: {_dateComplete} | Points : {GetScore()}";
+            return $"{typeGoal.PadRight(15)}: {base.GetName().PadRight(15)} | Started on : {_dateStart} | Tries: {_events.Count()}/{_amountCompleted} |  Status: Not Completed | Last Updated: {_dateComplete} | Points : {GetScore()}";
         }
         else
         {

@@ -117,7 +117,7 @@ public class MainMenu
         //Writing data
         Console.WriteLine($"Player name: {_playerName}");
         Console.WriteLine($"Total Goals: {_goals.Count()}");
-        Console.WriteLine($"Total Score: {_score}");
+        Console.WriteLine($"Total Score: {_score} points");
         Console.ReadLine();
     }
     private void ListGoalNames()
@@ -261,24 +261,23 @@ public class MainMenu
                 if (_goals[index].IsComplete() == false)
                 {
                     _goals[index].RecordEvent();
-                    message = "Event have been recorded.";
 
                     if (_goals[index].GetGoalType() == 1)
                     {
-                        message = message + "\n" + $"Your goal has been Completed!!! Congratulation, you won {_goals[index].GetPoints()} points";
+                        message = message + $"Your goal has been Completed!!! Congratulation, you won {_goals[index].GetPoints()} points";
                     }
                     else if (_goals[index].GetGoalType() == 2)
                     {
-                        message = message + "\n" + $"Your goal task has been recorded!!! Congratulation, you won {_goals[index].GetLessPoints()} points";
+                        message = message + $"Your goal task has been recorded!!! Congratulation, you won {_goals[index].GetLessPoints()} points";
                         //Let call IsComplete again, maybe the new added event completed the goal
                         if (_goals[index].IsComplete() == true)
                         {
-                            message = message + "\n" + $"Your goal has been Completed!!! Congratulation, you won {_goals[index].GetPoints()} extra points";
+                            message = message + $"Your goal has been Completed!!! Congratulation, you won {_goals[index].GetPoints()} extra points";
                         }
                     }
                     else if (_goals[index].GetGoalType() == 3)
                     {
-                        message = message + "\n" + $"Your goal task has been recorded!!! Congratulation, you won {_goals[index].GetPoints()} points";
+                        message = message + $"Your goal task has been recorded!!! Congratulation, you won {_goals[index].GetPoints()} points";
                     }
                 }
                 else
