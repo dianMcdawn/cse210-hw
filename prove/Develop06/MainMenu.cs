@@ -94,10 +94,16 @@ public class MainMenu
     {
         //Clearing screen
         Console.Clear();
-
-        foreach (Goal goal in _goals)
+        if (_goals.Count() > 0)
         {
-            Console.WriteLine(goal.GetRepresentation());
+            foreach (Goal goal in _goals)
+            {
+                Console.WriteLine(goal.GetRepresentation());
+            }
+        }
+        else
+        {
+            Console.WriteLine("There are no records to show.");
         }
         Console.ReadLine();
     }
@@ -105,10 +111,16 @@ public class MainMenu
     {
         //Clearing screen
         Console.Clear();
-
-        foreach (Goal goal in _goals)
+        if (_goals.Count() > 0)
         {
-            Console.WriteLine(goal.GetDetails());
+            foreach (Goal goal in _goals)
+            {
+                Console.WriteLine(goal.GetDetails());
+            }
+        }
+        else
+        {
+            Console.WriteLine("There are no records to show.");
         }
         Console.ReadLine();
     }
