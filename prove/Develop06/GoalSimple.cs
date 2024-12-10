@@ -8,11 +8,16 @@ public class GoalSimple : Goal
     private GoalEvent _event;
 
     //constructor
-    public GoalSimple(string name, string description, int point, string difficulty, bool isComplete, DateOnly date) : base(name, description, point, difficulty)
+    public GoalSimple(string name, string description, int point, string difficulty, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(name, description, point, difficulty)
     {
         _isComplete = isComplete;
-        _dateStart = date;
-        _dateComplete = date;
+        _dateStart = dateStart;
+        _dateComplete = dateUpdate;
+    }
+    //Setter
+    public override void SetNewGoalEvent(GoalEvent evento)
+    {
+        _event = evento;
     }
     //Getters
     public override string GetRepresentation()
@@ -70,8 +75,8 @@ public class GoalSimple : Goal
     {
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-            //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Goal to be achieved ; Event Date       
-            outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};0;{_dateComplete}");
+            //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date       
+            outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};;0;{_dateComplete}");
         }
 
     }

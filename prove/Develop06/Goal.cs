@@ -20,6 +20,8 @@ public abstract class Goal
         _points = point;
         _difficulty = difficulty;
     }
+    //Setters
+    public abstract void SetNewGoalEvent(GoalEvent evento);
     //Getters
 
     public string GetName()

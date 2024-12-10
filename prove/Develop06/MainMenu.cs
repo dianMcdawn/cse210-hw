@@ -173,7 +173,7 @@ public class MainMenu
                 Console.Write("Points: "); string points = Console.ReadLine(); int puntos = int.Parse(points);
                 Console.Write("Difficulty (Hard, Medium, Easy): "); string diff = Console.ReadLine();
                 //OneGoal goal = new OneGoal("Finish College", "Finish every class of this year.", 5000, "Hard", false, today);
-                GoalSimple goal = new GoalSimple(name, desc, puntos, diff, false, today);
+                GoalSimple goal = new GoalSimple(name, desc, puntos, diff, false, today, today);
                 _goals.Add(goal);
             }
             else if (choise == 2)
@@ -184,7 +184,7 @@ public class MainMenu
                 Console.Write("Points for achieved all: "); string pointsAll = Console.ReadLine(); int puntosAll = int.Parse(points);
                 Console.Write("Difficulty (Hard, Medium, Easy): "); string diff = Console.ReadLine();
                 Console.Write("How many to achieve (number): "); string goalTo = Console.ReadLine(); int goalToAchieve = int.Parse(goalTo);
-                GoalCheck goal = new GoalCheck(name, desc, puntosAll, diff, goalToAchieve, puntos, false, today);
+                GoalCheck goal = new GoalCheck(name, desc, puntosAll, diff, goalToAchieve, puntos, false, today, today);
                 _goals.Add(goal);
             }
             else if (choise == 3)
@@ -194,7 +194,7 @@ public class MainMenu
                 Console.Write("Points: "); string points = Console.ReadLine(); int puntos = int.Parse(points);
                 Console.Write("Difficulty (Hard, Medium, Easy): "); string diff = Console.ReadLine();
                 Console.Write("Period (Daily, Weekly, Monthly): "); string period = Console.ReadLine();
-                GoalEternal goal = new GoalEternal(name, desc, puntos, diff, period, false, today);
+                GoalEternal goal = new GoalEternal(name, desc, puntos, diff, period, false, today, today);
                 _goals.Add(goal);
             }
         } while (choise != 4);
@@ -252,22 +252,121 @@ public class MainMenu
     private void LoadGoals()
     {
         string fileName = "goals.txt";
+        string currentLine = "";
+        string currentEvent = "";
         string[] lines = System.IO.File.ReadAllLines(fileName);
 
         foreach (string line in lines)
         {
-            //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Goal to be achieved ; Event Date
+            //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
             string[] parts = line.Split(";");
             string playerName = parts[0];
             string goalName = parts[1];
             string goalDesc = parts[2];
-            string dateStart = parts[3];
-            string dateUpdate = parts[4];
+            string dateSrt = parts[3];
+            DateOnly dateStart = DateOnly.Parse(dateSrt);
+            string dateUpdt = parts[4];
+            DateOnly dateUpdate = DateOnly.Parse(dateUpdt);
             string pointsAll = parts[5];
+            int puntosAll = int.Parse(pointsAll);
             string pointsOne = parts[6];
+            int puntos = int.Parse(pointsOne);
             string diff = parts[7];
-            string goalToAchieve = parts[8];
-            string eventDate = parts[9];
+            string period = parts[8];
+            string goalAchieve = parts[9];
+            int goalToAchieve = int.Parse(goalAchieve);
+            string eventDt = parts[10];
+            DateOnly eventDate = DateOnly.Parse(eventDt);
+
+            //Creating main
+            if (playerName == _playerName)
+            {
+                //If it is a Eternal Goal
+                if (period != null)
+                {
+                    //Let check if the line is about the same Goal, but a different event
+                    if (currentLine != goalName + goalDesc + puntosAll + diff + period + dateStart + dateUpdate)
+                    {
+                        //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; X ; Difficulty ; Period ; X ; Event Date       
+                        GoalEternal goal = new GoalEternal(goalName, goalDesc, puntosAll, diff, period, false, dateStart, dateUpdate);
+                        currentLine = goalName + goalDesc + puntosAll + diff + period + dateStart + dateUpdate;
+
+                        //Saving it
+                        _goals.Add(goal);
+
+                        //If this line have an event date, let create it
+                        if (eventDt != null)
+                        {
+                            GoalEvent evento = new GoalEvent(eventDate);
+                            goal.SetNewGoalEvent(evento);
+                        }
+                    }
+                    else
+                    {
+                        //If this line have an event date, let create it
+                        if (eventDt != null)
+                        {
+                            //Take the last index, as the last one of the list is the last one we saved before
+                            int index = _goals.Count() - 1;
+                            GoalEvent evento = new GoalEvent(eventDate);
+                            _goals[index].SetNewGoalEvent(evento);
+                        }
+                    }
+                }
+                //If it is a Check Goal
+                else if (pointsOne != null)
+                {
+                    //Let check if the line is about the same Goal, but a different event
+                    if (currentLine != goalName + goalDesc + puntosAll + diff + goalToAchieve + puntos + dateStart + dateUpdate)
+                    {
+                        //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; X ; Goal to be achieved ; Event Date       
+                        GoalCheck goal = new GoalCheck(goalName, goalDesc, puntosAll, diff, goalToAchieve, puntos, false, dateStart, dateUpdate);
+                        currentLine = goalName + goalDesc + puntosAll + diff + goalToAchieve + puntos + dateStart + dateUpdate;
+
+
+                        //Saving it
+                        _goals.Add(goal);
+
+                        //If this line have an event date, let create it
+                        if (eventDt != null)
+                        {
+                            GoalEvent evento = new GoalEvent(eventDate);
+                            goal.SetNewGoalEvent(evento);
+                        }
+                    }
+                    else
+                    {
+                        //If this line have an event date, let create it
+                        if (eventDt != null)
+                        {
+                            //Take the last index, as the last one of the list is the last one we saved before
+                            int index = _goals.Count() - 1;
+                            GoalEvent evento = new GoalEvent(eventDate);
+                            _goals[index].SetNewGoalEvent(evento);
+                        }
+                    }
+                }
+                //If it is a Simple Goal
+                else
+                {//Let check if the line is about the same Goal, but a different event
+                    if (currentLine != goalName + goalDesc + puntosAll + diff + dateStart + dateUpdate)
+                    {
+                        //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; X ; Difficulty ; X ; X ; Event Date       
+                        GoalSimple goal = new GoalSimple(goalName, goalDesc, puntosAll, diff, false, dateStart, dateUpdate);
+                        currentLine = goalName + goalDesc + puntosAll + diff + dateStart + dateUpdate;
+
+                        //Saving it
+                        _goals.Add(goal);
+
+                        //If this line have an event date, let create it
+                        if (eventDt != null)
+                        {
+                            GoalEvent evento = new GoalEvent(eventDate);
+                            goal.SetNewGoalEvent(evento);
+                        }
+                    }
+                }
+            }
         }
     }
 }

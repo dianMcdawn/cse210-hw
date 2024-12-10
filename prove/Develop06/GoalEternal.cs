@@ -6,11 +6,16 @@ public class GoalEternal : Goal
     private List<GoalEvent> _events = new List<GoalEvent>();
 
     //constructor
-    public GoalEternal(string name, string description, int point, string difficulty, string periodGoal, bool isComplete, DateOnly date) : base(name, description, point, difficulty)
+    public GoalEternal(string name, string description, int point, string difficulty, string periodGoal, bool isComplete, DateOnly dateStart, DateOnly dateUpdate) : base(name, description, point, difficulty)
     {
         _periodGoal = periodGoal;
-        _dateStart = date;
-        _dateUpdate = date;
+        _dateStart = dateStart;
+        _dateUpdate = dateUpdate;
+    }
+    //Setter
+    public override void SetNewGoalEvent(GoalEvent evento)
+    {
+        _events.Add(evento);
     }
     //Getters
     public override string GetRepresentation()
@@ -48,14 +53,14 @@ public class GoalEternal : Goal
             {
                 foreach (GoalEvent evento in _events)
                 {
-                    //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Goal to be achieved ; Event Date
-                    outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};0;{evento.GetDate()}");
+                    //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
+                    outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};{_periodGoal};0;{evento.GetDate()}");
                 }
             }
             else
             {
-                //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Goal to be achieved ; Event Date
-                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};0;");
+                //Player Name ; Goal Name ; Goal Description ; Date Start ; Date Update/Completed ; Points ; Points individual (Check) ; Difficulty ; Period ; Goal to be achieved ; Event Date
+                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};{_periodGoal};0;");
             }
         }
 
