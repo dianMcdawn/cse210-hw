@@ -67,11 +67,19 @@ public class GoalCheck : Goal
     {
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-            foreach(GoalEvent evento in _events)
+            if (_events.Count() > 0)
             {
-                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};{_lesserPoints};{_goalToAchieve};{evento.GetDate()}");
+                foreach (GoalEvent evento in _events)
+                {
+                    outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};;{_lesserPoints};{_goalToAchieve};{evento.GetDate()}");
+                }
             }
+            else
+            {
+                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateComplete};{base.GetPoints()};0;{base.GetDifficulty()};0;0;");
+            }
+
         }
-        
+
     }
 }

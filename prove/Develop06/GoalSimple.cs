@@ -10,6 +10,7 @@ public class GoalSimple : Goal
     {
         _isComplete = isComplete;
         _dateStart = date;
+        _dateComplete = date;
     }
     //Getters
     public override string GetRepresentation()

@@ -44,11 +44,18 @@ public class GoalEternal : Goal
     {
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-            foreach(GoalEvent evento in _events)
+            if (_events.Count() > 0)
             {
-                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};0;0;{evento.GetDate()}");
+                foreach (GoalEvent evento in _events)
+                {
+                    outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};0;0;{evento.GetDate()}");
+                }
+            }
+            else
+            {
+                outputFile.WriteLine($"{playerName};{base.GetName()};{base.GetDescription()};{_dateStart};{_dateUpdate};{base.GetPoints()};0;{base.GetDifficulty()};0;0;");
             }
         }
-        
+
     }
 }
