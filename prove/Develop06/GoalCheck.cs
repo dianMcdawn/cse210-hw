@@ -39,7 +39,7 @@ public class GoalCheck : Goal
         }
         return details;
     }
-    private int GetScore()
+    public override int GetScore()
     {
         if (_isComplete == false)
         {

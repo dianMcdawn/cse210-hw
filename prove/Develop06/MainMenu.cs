@@ -15,6 +15,15 @@ public class MainMenu
     {
         _playerName = name;
     }
+    private void SetScore()
+    {
+        int score = 0;
+        foreach (Goal goal in _goals)
+        {
+            score = score + goal.GetScore();
+        }
+        _score = score;
+    }
 
     //Methods
     public void Start()
@@ -27,6 +36,9 @@ public class MainMenu
         {
             //Clearing screen
             Console.Clear();
+
+            //Refreshing Score
+            SetScore();
 
             //Making the choise selection
             Console.WriteLine($"Player: {_playerName}");
@@ -242,5 +254,4 @@ public class MainMenu
         Console.ReadLine();
     }
     private void LoadGoals() { }
-
 }

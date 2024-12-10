@@ -40,6 +40,7 @@ public abstract class Goal
     {
         return _points;
     }
+    public abstract int GetScore();
     public abstract string GetRepresentation();
     public abstract string GetDetails();
 

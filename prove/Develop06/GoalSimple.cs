@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 public class GoalSimple : Goal
 {
     private bool _isComplete;
@@ -32,7 +34,7 @@ public class GoalSimple : Goal
         return details;
     }
     //Getters
-    private int GetScore()
+    public override int GetScore()
     {
         if (_isComplete == false)
         {

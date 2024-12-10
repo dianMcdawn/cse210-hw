@@ -27,7 +27,7 @@ public class GoalEternal : Goal
         }
         return details;
     }
-    private int GetScore()
+    public override int GetScore()
     {
         return base.GetPoints() * _events.Count();
     }
