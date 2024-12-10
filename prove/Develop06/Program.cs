@@ -12,7 +12,7 @@ class Program
         //Showing Creativity and Exceeding Requirements
         /*
         This programm take track of all events of every type by using a new class call GoalEvent.
-        On it, a datetime is saved to show when a mark has been added.
+        On it, a datetime data is saved to show when a mark has been added.
         */
 
         //Starting Main Class
