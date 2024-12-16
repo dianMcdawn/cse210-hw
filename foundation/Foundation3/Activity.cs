@@ -1,4 +1,4 @@
-public abstract class Activity
+public class Activity
 {
     private string _title;
     private DateTime _date;
@@ -23,9 +23,9 @@ public abstract class Activity
     {
         return _date;
     }
-    public abstract double GetDistante();
-    public abstract double GetSpeed();
-    public abstract double GetPace();
+    public virtual double GetDistante() { return 0; }
+    public virtual double GetSpeed() { return 0; }
+    public virtual double GetPace() { return 0; }
 
     //Methods
     public string GetSummary()
