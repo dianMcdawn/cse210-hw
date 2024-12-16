@@ -22,7 +22,7 @@ class Program
         Bicycles bic = new Bicycles("First cycle", todaytime, 60, 15);
 
         //Swimming (title, datetime, duration in minutes, laps)
-        Swimming swi = new Swimming("First cycle", todaytime, 60, 50);
+        Swimming swi = new Swimming("First cycle", todaytime, 15, 50);
 
         //Addint to the same list
         activities.Add(run);
